@@ -101,7 +101,7 @@ export default function Hero() {
           className="mb-6 md:mb-8"
         >
           <h1
-            className="text-display text-display-xl flex flex-row flex-nowrap items-baseline gap-x-3 sm:gap-x-4"
+            className="font-brand text-display-xl flex flex-row flex-nowrap items-baseline gap-x-3 sm:gap-x-4"
             style={{ color: 'var(--elaz-text-primary)' }}
           >
             <span className="headline-word">ELAZ</span>

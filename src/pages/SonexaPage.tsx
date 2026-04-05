@@ -53,8 +53,11 @@ export default function SonexaPage() {
   const body = 'text-[0.9375rem] leading-[1.7] sm:text-base sm:leading-[1.75]';
   const heading2 =
     'font-display text-[1.2rem] font-semibold tracking-tight text-balance sm:text-[1.4rem] md:text-2xl';
-  const sectionShell =
-    'mx-auto w-full max-w-3xl px-5 py-12 sm:px-6 sm:py-20 md:py-24 lg:px-0';
+  /** Zelfde ritme als landingssecties (HowWeWork, Initiatives): py op de band, geen border-t. */
+  const sectionBand =
+    'relative flex flex-col justify-center py-16 md:py-24';
+  const sectionInner =
+    'mx-auto w-full max-w-3xl px-5 sm:px-6 lg:px-0';
 
   return (
     <article
@@ -74,7 +77,7 @@ export default function SonexaPage() {
         <div className="relative mx-auto w-full max-w-3xl px-5 pb-10 pt-[max(5.5rem,calc(env(safe-area-inset-top,0px)+4.5rem))] sm:px-6 sm:pb-14 sm:pt-28 md:pb-16 md:pt-32 lg:px-0">
           <div className="mb-5 flex flex-wrap items-center gap-x-3 gap-y-1 sm:mb-8">
             <span
-              className="font-display text-base font-bold tracking-tight sm:text-lg md:text-xl"
+              className="font-brand text-base sm:text-lg md:text-xl"
               style={{ color: 'var(--elaz-text-primary)' }}
             >
               SONEXA
@@ -110,12 +113,20 @@ export default function SonexaPage() {
               {t('sonexa.hero.ctaContact')}
             </a>
           </div>
+
+          <div
+            className="rule-line mt-12 w-full origin-left sm:mt-16 md:mt-20"
+            aria-hidden
+          />
         </div>
       </header>
 
       {/* ─── CONTEXT / WHY ─── */}
-      <section className="border-t" style={{ borderColor: 'var(--elaz-border)', backgroundColor: 'var(--elaz-bg-secondary)' }}>
-        <div className={sectionShell}>
+      <section
+        className={sectionBand}
+        style={{ backgroundColor: 'var(--elaz-bg-secondary)' }}
+      >
+        <div className={sectionInner}>
           <SectionLabel>01</SectionLabel>
           <h2
             className={`${heading2} mb-4 sm:mb-5`}
@@ -135,8 +146,11 @@ export default function SonexaPage() {
       </section>
 
       {/* ─── FOCUS ─── */}
-      <section className="border-t" style={{ borderColor: 'var(--elaz-border)' }}>
-        <div className={sectionShell}>
+      <section
+        className={sectionBand}
+        style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
+      >
+        <div className={sectionInner}>
           <SectionLabel>02</SectionLabel>
           <h2
             className={`${heading2} mb-4 sm:mb-5`}
@@ -171,8 +185,11 @@ export default function SonexaPage() {
       </section>
 
       {/* ─── HOW WE WORK ─── */}
-      <section className="border-t" style={{ borderColor: 'var(--elaz-border)', backgroundColor: 'var(--elaz-bg-secondary)' }}>
-        <div className={sectionShell}>
+      <section
+        className={sectionBand}
+        style={{ backgroundColor: 'var(--elaz-bg-secondary)' }}
+      >
+        <div className={sectionInner}>
           <SectionLabel>03</SectionLabel>
           <h2
             className={`${heading2} mb-8 sm:mb-10`}
@@ -209,8 +226,11 @@ export default function SonexaPage() {
       </section>
 
       {/* ─── WHERE THIS LEADS ─── */}
-      <section className="border-t" style={{ borderColor: 'var(--elaz-border)' }}>
-        <div className={sectionShell}>
+      <section
+        className={sectionBand}
+        style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
+      >
+        <div className={sectionInner}>
           <SectionLabel>04</SectionLabel>
           <h2
             className={`${heading2} mb-4 sm:mb-5`}
@@ -245,8 +265,11 @@ export default function SonexaPage() {
       </section>
 
       {/* ─── WHO IS THIS FOR ─── */}
-      <section className="border-t" style={{ borderColor: 'var(--elaz-border)', backgroundColor: 'var(--elaz-bg-secondary)' }}>
-        <div className={sectionShell}>
+      <section
+        className={sectionBand}
+        style={{ backgroundColor: 'var(--elaz-bg-secondary)' }}
+      >
+        <div className={sectionInner}>
           <SectionLabel>05</SectionLabel>
           <h2
             className={`${heading2} mb-6 sm:mb-8 md:mb-10`}
@@ -287,8 +310,11 @@ export default function SonexaPage() {
       </section>
 
       {/* ─── REPEAT SURVEY CTA ─── */}
-      <section className="border-t" style={{ borderColor: 'var(--elaz-border)' }}>
-        <div className={`${sectionShell} text-center`}>
+      <section
+        className={sectionBand}
+        style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
+      >
+        <div className={`${sectionInner} text-center`}>
           <h2
             className="font-display mb-3 text-[1.1rem] font-semibold tracking-tight sm:mb-4 sm:text-lg md:text-xl"
             style={{ color: 'var(--elaz-text-primary)' }}
@@ -307,10 +333,10 @@ export default function SonexaPage() {
 
       {/* ─── CLOSING / CONTACT ─── */}
       <section
-        className="border-t"
-        style={{ borderColor: 'var(--elaz-border)', backgroundColor: 'var(--elaz-bg-secondary)' }}
+        className={sectionBand}
+        style={{ backgroundColor: 'var(--elaz-bg-secondary)' }}
       >
-        <div className={sectionShell}>
+        <div className={sectionInner}>
           <h2
             className={`${heading2} mb-3 sm:mb-4`}
             style={{ color: 'var(--elaz-text-primary)' }}

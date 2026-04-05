@@ -79,10 +79,10 @@ export default function Navigation() {
                 setIsMobileMenuOpen(false);
               }
             }}
-            className="font-display font-semibold text-base sm:text-lg md:text-xl transition-opacity hover:opacity-80"
+            className="font-brand text-sm sm:text-base md:text-lg transition-opacity hover:opacity-80"
             style={{ color: 'var(--elaz-text-primary)' }}
           >
-            ELAZ
+            ELAZ GROUP
           </Link>
 
           {/* Desktop nav links */}

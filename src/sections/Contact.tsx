@@ -76,7 +76,7 @@ export default function Contact() {
 
           <div className="mb-10 md:mb-12 lg:mb-14">
             <p
-              className="font-display font-semibold text-2xl sm:text-3xl md:text-4xl tracking-tight uppercase"
+              className="font-brand text-2xl sm:text-3xl md:text-4xl uppercase"
               style={{ color: 'var(--elaz-text-primary)' }}
             >
               {t('contact.company')} {t('contact.legalForm')}
