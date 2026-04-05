@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import Navigation from './components/Navigation';
-import CookieBanner from './components/CookieBanner';
+// import CookieBanner from './components/CookieBanner';
 import Footer from './sections/Footer';
 import HomePage from './pages/HomePage';
 import SonexaPage from './pages/SonexaPage';
@@ -109,7 +109,7 @@ function PageLayout() {
         <Outlet />
       </main>
       {!hideFooter && <Footer />}
-      <CookieBanner />
+      {/* <CookieBanner /> */}
     </>
   );
 }
