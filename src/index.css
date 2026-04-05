@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Calm, professional color palette */
+    --elaz-bg-primary: #FAFAF8;
+    --elaz-bg-secondary: #F2F0EE;
+    --elaz-bg-dark: #E8E5E2;
+    --elaz-text-primary: #1C1917;
+    --elaz-text-secondary: #57534E;
+    --elaz-text-muted: #A8A29E;
+    --elaz-accent: #4A6C6F;
+    --elaz-accent-light: #5A7C7F;
+    --elaz-border: #D6D3D1;
+    
+    --background: 40 20% 98%;
+    --foreground: 20 14% 10%;
+    --card: 40 20% 98%;
+    --card-foreground: 20 14% 10%;
+    --popover: 40 20% 98%;
+    --popover-foreground: 20 14% 10%;
+    --primary: 183 20% 36%;
+    --primary-foreground: 40 20% 98%;
+    --secondary: 30 10% 94%;
+    --secondary-foreground: 20 14% 10%;
+    --muted: 30 10% 94%;
+    --muted-foreground: 25 6% 40%;
+    --accent: 183 20% 36%;
+    --accent-foreground: 40 20% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 10% 84%;
+    --input: 30 10% 84%;
+    --ring: 183 20% 36%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  body {
+    @apply antialiased;
+    background-color: var(--elaz-bg-primary);
+    color: var(--elaz-text-primary);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-width: 320px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+  }
+  
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+}
+
+@layer components {
+  .text-display {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  
+  /* Responsive display text sizes */
+  .text-display-xl {
+    font-size: clamp(2.25rem, 10vw, 6rem);
+    line-height: 1;
+  }
+  
+  .text-display-lg {
+    font-size: clamp(1.875rem, 6vw, 4rem);
+    line-height: 1.1;
+  }
+  
+  .text-display-md {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    line-height: 1.15;
+  }
+  
+  .text-mono-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  
+  @media (min-width: 768px) {
+    .text-mono-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+    }
+  }
+  
+  .rule-line {
+    height: 1px;
+    background: var(--elaz-border);
+  }
+  
+  .grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.02;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+  
+  .section-pinned {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .initiative-card {
+    border: 1px solid var(--elaz-border);
+    background: #fff;
+    border-radius: 1rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      0 1px 2px rgba(28, 25, 23, 0.04),
+      0 16px 48px -20px rgba(28, 25, 23, 0.1);
+  }
+  
+  .initiative-card:hover {
+    border-color: var(--elaz-accent);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      0 4px 12px rgba(28, 25, 23, 0.06),
+      0 20px 56px -18px rgba(74, 108, 111, 0.14);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-5 py-3 md:px-6 md:py-3 font-medium text-sm transition-all duration-200 rounded-lg;
+    background: var(--elaz-accent);
+    color: white;
+    min-height: 48px;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    background: var(--elaz-accent-light);
+    box-shadow: 0 4px 12px rgba(74, 108, 111, 0.25);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-5 py-3 md:px-6 md:py-3 font-medium text-sm transition-all duration-200 rounded-lg;
+    background: transparent;
+    color: var(--elaz-text-primary);
+    border: 1px solid var(--elaz-border);
+    min-height: 48px;
+  }
+  
+  .btn-secondary:hover {
+    transform: translateY(-1px);
+    border-color: var(--elaz-accent);
+    color: var(--elaz-accent);
+  }
+  
+  .btn-secondary:active {
+    transform: translateY(0);
+  }
+  
+  .link-arrow {
+    @apply inline-flex items-center gap-2 font-medium text-sm transition-all duration-200;
+    color: var(--elaz-accent);
+  }
+  
+  .link-arrow:hover {
+    transform: translateX(4px);
+    color: var(--elaz-accent-light);
+  }
+  
+  .nav-link {
+    @apply text-sm font-medium transition-colors duration-200;
+    color: var(--elaz-text-secondary);
+  }
+  
+  .nav-link:hover {
+    color: var(--elaz-text-primary);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Mobile touch improvements */
+@media (hover: none) {
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .link-arrow:hover {
+    transform: none;
+  }
+  
+  .initiative-card:hover {
+    border-color: var(--elaz-border);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      0 1px 2px rgba(28, 25, 23, 0.04),
+      0 16px 48px -20px rgba(28, 25, 23, 0.1);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
