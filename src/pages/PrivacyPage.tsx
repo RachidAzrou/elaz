@@ -1,6 +1,4 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 function BulletList({ items }: { items: string[] }) {
@@ -42,14 +40,6 @@ export default function PrivacyPage() {
         style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
       >
         <div className="mx-auto w-full max-w-3xl px-5 sm:px-6 lg:px-8">
-          <Link
-            to="/"
-            className="mb-8 inline-flex items-center gap-2 text-sm font-medium transition-opacity hover:opacity-80"
-            style={{ color: 'var(--elaz-accent)' }}
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden />
-            {t('privacy.backHome')}
-          </Link>
           <p
             className="text-mono-label mb-4"
             style={{ color: 'var(--elaz-accent)' }}
