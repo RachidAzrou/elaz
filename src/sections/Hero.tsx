@@ -111,14 +111,19 @@ export default function Hero() {
 
         <p
           ref={taglineRef}
-          className="text-lg sm:text-xl md:text-2xl leading-relaxed font-medium mb-4 md:mb-6 max-w-full overflow-x-auto [scrollbar-width:thin] whitespace-nowrap"
+          className="text-base sm:text-lg md:text-2xl leading-relaxed font-medium mb-4 md:mb-6 max-w-full flex flex-wrap"
           style={{ color: 'var(--elaz-text-primary)' }}
           aria-label={tagline}
         >
-          <span aria-hidden="true">
-            {Array.from(tagline).map((char, i) => (
-              <span key={`${tagline}-${i}`} className="tagline-char inline-block">
-                {char === ' ' ? '\u00a0' : char}
+          <span aria-hidden="true" className="flex flex-wrap">
+            {tagline.split(' ').map((word, wi) => (
+              <span key={`${tagline}-w${wi}`} className="inline-flex">
+                {wi > 0 && <span className="tagline-char inline-block">&nbsp;</span>}
+                {Array.from(word).map((char, ci) => (
+                  <span key={`${tagline}-${wi}-${ci}`} className="tagline-char inline-block">
+                    {char}
+                  </span>
+                ))}
               </span>
             ))}
           </span>

@@ -74,7 +74,9 @@
 @layer components {
   .font-brand {
     font-family: 'Audiowide', sans-serif;
+    font-weight: 400;
     letter-spacing: 0.04em;
+    line-height: 1.1;
   }
 
   .text-display {

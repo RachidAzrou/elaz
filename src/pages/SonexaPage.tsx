@@ -197,7 +197,7 @@ export default function SonexaPage() {
           >
             {t('sonexa.how.title')}
           </h2>
-          <div className="grid grid-cols-1 gap-8 xs:grid-cols-2 sm:grid-cols-4 sm:gap-x-6 md:gap-x-10">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 md:gap-x-10">
             {([1, 2, 3, 4] as const).map((n) => (
               <div key={n}>
                 <p
@@ -277,11 +277,11 @@ export default function SonexaPage() {
           >
             {t('sonexa.who.title')}
           </h2>
-          <div className="grid grid-cols-1 gap-0 xs:grid-cols-2 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-0 sm:grid-cols-2">
             {([1, 2, 3, 4] as const).map((n, i) => (
               <div
                 key={n}
-                className="border-b px-0 py-5 xs:odd:pr-6 xs:even:pl-6 xs:even:border-l sm:py-6 md:odd:pr-8 md:even:pl-8"
+                className="border-b px-0 py-5 sm:py-6 sm:odd:pr-6 sm:even:pl-6 sm:even:border-l md:odd:pr-8 md:even:pl-8"
                 style={{ borderColor: 'var(--elaz-border)' }}
               >
                 <h3

@@ -76,7 +76,7 @@ export default function Contact() {
 
           <div className="mb-10 md:mb-12 lg:mb-14">
             <p
-              className="font-brand text-2xl sm:text-3xl md:text-4xl uppercase"
+              className="font-brand text-xl sm:text-2xl md:text-3xl lg:text-4xl uppercase"
               style={{ color: 'var(--elaz-text-primary)' }}
             >
               {t('contact.company')} {t('contact.legalForm')}
@@ -95,8 +95,7 @@ export default function Contact() {
           >
             <div className="lg:col-span-7 xl:col-span-8 min-w-0">
               <div
-                className="relative w-full overflow-hidden rounded-2xl bg-[var(--elaz-bg-primary)] shadow-[0_1px_0_rgba(28,25,23,0.05),0_20px_50px_-24px_rgba(28,25,23,0.2)] ring-1 ring-black/[0.06]"
-                style={{ aspectRatio: '16 / 10' }}
+                className="relative w-full overflow-hidden rounded-2xl bg-[var(--elaz-bg-primary)] shadow-[0_1px_0_rgba(28,25,23,0.05),0_20px_50px_-24px_rgba(28,25,23,0.2)] ring-1 ring-black/[0.06] aspect-[4/3] sm:aspect-[3/2] lg:aspect-[16/10]"
               >
                 <iframe
                   title={OFFICE_MAP_QUERY}

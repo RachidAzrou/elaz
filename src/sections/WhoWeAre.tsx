@@ -130,14 +130,14 @@ export default function WhoWeAre() {
 
         <div
           ref={photosRef}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-3 md:gap-5 mb-6 sm:mb-8 md:mb-10"
+          className="grid grid-cols-3 gap-3 sm:gap-3 md:gap-5 mb-6 sm:mb-8 md:mb-10"
         >
           {FOUNDERS.map((founder) => {
             const { title, subtitle } = splitFounderRole(t(founder.roleKey));
             return (
               <div key={founder.src} className="founder-photo flex flex-col items-center gap-2.5 sm:gap-3 text-center">
                 <div
-                  className="w-full max-w-[156px] sm:max-w-[148px] md:max-w-[168px] aspect-[5/6] rounded-xl overflow-hidden shadow-sm ring-1 ring-black/[0.06]"
+                  className="mx-auto w-full max-w-[120px] sm:max-w-[148px] md:max-w-[168px] aspect-[5/6] rounded-xl overflow-hidden shadow-sm ring-1 ring-black/[0.06]"
                   style={{
                     backgroundColor: 'var(--elaz-bg-primary)',
                   }}
@@ -177,7 +177,7 @@ export default function WhoWeAre() {
                 </div>
                 <div className="w-full min-w-0 flex flex-col items-center">
                   <p
-                    className="font-display font-semibold text-base sm:text-lg leading-snug tracking-tight"
+                    className="font-display font-semibold text-sm sm:text-base md:text-lg leading-snug tracking-tight"
                     style={{ color: 'var(--elaz-text-primary)' }}
                   >
                     {t(founder.nameKey)}

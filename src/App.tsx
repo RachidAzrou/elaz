@@ -60,23 +60,24 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
         transitionDuration: `${FADE_OUT}ms`,
       }}
     >
-      <div className="flex flex-col items-center">
+      <div className="flex w-full flex-col items-center px-5 text-center sm:px-8">
         <h1
-          className="text-[3.5rem] font-extrabold tracking-tight opacity-0 sm:text-[5.5rem] md:text-[7rem] lg:text-[8rem]"
+          className="text-[clamp(2rem,10vw,8rem)] opacity-0"
           style={{
             fontFamily: "'Audiowide', sans-serif",
             fontWeight: 400,
             letterSpacing: '0.04em',
+            lineHeight: 1.1,
             color: 'var(--elaz-text-primary)',
             animation: `splashFadeUp 0.8s ease-out ${TITLE_DELAY}ms forwards`,
           }}
         >
           ELAZ GROUP
         </h1>
-        <div className="mt-4 h-[1.75rem] sm:mt-6 sm:h-[2rem] md:h-[2.25rem]">
+        <div className="mt-3 h-[1.5rem] sm:mt-5 sm:h-[1.75rem] md:mt-6 md:h-[2rem]">
           {typingStarted && (
             <p
-              className="font-display text-lg font-medium tracking-wide sm:text-xl md:text-2xl lg:text-[1.75rem]"
+              className="font-display text-sm font-medium tracking-wide sm:text-base md:text-xl lg:text-[1.5rem]"
               style={{ color: 'var(--elaz-text-muted)' }}
             >
               <span>{SUBTITLE.slice(0, charCount)}</span>
