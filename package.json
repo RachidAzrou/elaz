@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "render:signatures": "node scripts/render-email-signatures.mjs",
+    "export:logo": "node scripts/export-elaz-logo.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
