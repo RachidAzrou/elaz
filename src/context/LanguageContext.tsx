@@ -83,7 +83,7 @@ const translations = {
     'sonexa.context.p2': 'Dat is niet uitzonderlijk. We zien dit patroon in meerdere praktijken terugkomen. Sonexa wil deze realiteit in kaart brengen op basis van wat praktijken zelf ervaren.',
 
     'sonexa.focus.title': 'Wat we vandaag doen',
-    'sonexa.focus.lead': 'Sonexa zit in een fase van onderzoek. We werken samen met praktijken om:',
+    'sonexa.focus.lead': 'We zitten in een fase van onderzoek en ontwikkeling. We werken samen met praktijken om:',
     'sonexa.focus.li1': 'Terugkerende telefonische en administratieve patronen in kaart te brengen',
     'sonexa.focus.li2': 'Te begrijpen hoe praktijken dit vandaag opvangen',
     'sonexa.focus.li3': 'Knelpunten te zien tijdens piekmomenten',
@@ -105,7 +105,7 @@ const translations = {
     'sonexa.future.li1': 'Administratieve druk verlagen',
     'sonexa.future.li2': 'Telefonische belasting beter organiseren',
     'sonexa.future.li3': 'Aansluiten op hoe er vandaag gewerkt wordt',
-    'sonexa.future.li4': 'De controle in de praktijk laten',
+    'sonexa.future.li4': 'De regie bij de praktijk houden',
     'sonexa.future.footer': 'We bouwen pas als de realiteit voldoende duidelijk is.',
 
     'sonexa.who.title': 'Voor wie is dit relevant',
