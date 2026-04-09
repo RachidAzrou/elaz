@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ELAZ email signatures</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fafaf8;
+        --text: #1c1917;
+        --text-secondary: #57534e;
+        --text-muted: #a8a29e;
+        --accent: #4a6c6f;
+        --border: #d6d3d1;
+      }
+      body {
+        margin: 0;
+        padding: 48px;
+        background: #888;
+        font-family: Inter, system-ui, sans-serif;
+      }
+      .sig-wrap {
+        display: inline-block;
+        margin-bottom: 48px;
+        background: var(--bg);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 1px 2px rgba(28, 25, 23, 0.04),
+          0 16px 48px -20px rgba(28, 25, 23, 0.12);
+        border: 1px solid var(--border);
+      }
+      .signature {
+        display: flex;
+        align-items: stretch;
+        width: 560px;
+        min-height: 132px;
+        background: var(--bg);
+        box-sizing: border-box;
+      }
+      .sig-accent {
+        width: 4px;
+        flex-shrink: 0;
+        background: var(--accent);
+      }
+      .sig-inner {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 24px 20px 20px;
+        flex: 1;
+        min-width: 0;
+      }
+      .sig-photo {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 1px solid var(--border);
+        background: #fff;
+      }
+      .sig-text {
+        flex: 1;
+        min-width: 0;
+      }
+      .sig-brand {
+        font-family: Audiowide, sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        margin-bottom: 6px;
+        line-height: 1.2;
+      }
+      .sig-name {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        font-size: 19px;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        line-height: 1.15;
+        margin-bottom: 4px;
+      }
+      .sig-role {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        line-height: 1.35;
+        margin-bottom: 10px;
+        max-width: 340px;
+      }
+      .sig-meta {
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+      .sig-meta a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sig-wrap" id="sig-hassan">
+      <div class="signature">
+        <div class="sig-accent" aria-hidden="true"></div>
+        <div class="sig-inner">
+          <img class="sig-photo" src="https://elazgroup.com/images/founder1.jpg" alt="" />
+          <div class="sig-text">
+            <div class="sig-brand">ELAZ GROUP</div>
+            <div class="sig-name">Hassan Lajhad</div>
+            <div class="sig-role">Co-founder — Technology &amp; AI Implementation</div>
+            <div class="sig-meta">
+              <a href="https://elazgroup.com">elazgroup.com</a>
+            </div>
+            <div class="sig-meta">Uitbreidingstraat 84, 2600 Antwerpen, België</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sig-wrap" id="sig-rachid">
+      <div class="signature">
+        <div class="sig-accent" aria-hidden="true"></div>
+        <div class="sig-inner">
+          <img class="sig-photo" src="https://elazgroup.com/images/founder2.jpg" alt="" />
+          <div class="sig-text">
+            <div class="sig-brand">ELAZ GROUP</div>
+            <div class="sig-name">Rachid Azrou</div>
+            <div class="sig-role">Co-founder — Product &amp; AI Architecture</div>
+            <div class="sig-meta">
+              <a href="https://elazgroup.com">elazgroup.com</a>
+            </div>
+            <div class="sig-meta">Uitbreidingstraat 84, 2600 Antwerpen, België</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sig-wrap" id="sig-jawad">
+      <div class="signature">
+        <div class="sig-accent" aria-hidden="true"></div>
+        <div class="sig-inner">
+          <img class="sig-photo" src="https://elazgroup.com/images/founder3.png" alt="" />
+          <div class="sig-text">
+            <div class="sig-brand">ELAZ GROUP</div>
+            <div class="sig-name">Jawad El Khalki</div>
+            <div class="sig-role">Co-founder — Product Operations &amp; QA</div>
+            <div class="sig-meta">
+              <a href="https://elazgroup.com">elazgroup.com</a>
+            </div>
+            <div class="sig-meta">Uitbreidingstraat 84, 2600 Antwerpen, België</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
