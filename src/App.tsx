@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import Navigation from './components/Navigation';
@@ -10,9 +11,9 @@ import PrivacyPage from './pages/PrivacyPage';
 import CookiesPage from './pages/CookiesPage';
 
 const SUBTITLE = 'Digital products, built with purpose';
-const TYPE_SPEED = 95;
-const PAUSE_AFTER_TYPE = 3000;
-const FADE_OUT = 600;
+const TYPE_SPEED = 40;
+const PAUSE_AFTER_TYPE = 1000;
+const FADE_OUT = 350;
 
 function SplashScreen({ onDone }: { onDone: () => void }) {
   const [phase, setPhase] = useState<'in' | 'out'>('in');
@@ -20,8 +21,8 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
   const [charCount, setCharCount] = useState(0);
   const doneRef = useRef(false);
 
-  const TITLE_DELAY = 150;
-  const WAIT_BEFORE_TYPE = 2000;
+  const TITLE_DELAY = 100;
+  const WAIT_BEFORE_TYPE = 400;
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -117,6 +118,7 @@ function PageLayout() {
 
 export default function App() {
   const location = useLocation();
+  const analyticsPath = `${location.pathname}${location.search}`;
   const isHome = location.pathname === '/';
   const [showSplash, setShowSplash] = useState(isHome);
 
@@ -126,6 +128,7 @@ export default function App() {
 
   return (
     <LanguageProvider>
+      <Analytics route={location.pathname} path={analyticsPath} />
       <div className="relative">
         <div className="grain-overlay" />
         {showSplash && <SplashScreen onDone={handleSplashDone} />}
