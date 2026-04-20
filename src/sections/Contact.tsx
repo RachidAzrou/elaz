@@ -1,18 +1,22 @@
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Mail, MapPin } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 /** Used for Google Maps embed (stable across UI languages). */
 const OFFICE_MAP_QUERY = 'Uitbreidingstraat 84, 2600 Antwerpen, Belgium';
+const OFFICE_MAP_LINK = `https://maps.google.com/?q=${encodeURIComponent(OFFICE_MAP_QUERY)}`;
 
 export default function Contact() {
   const { t, language } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const markerRef = useRef<HTMLDivElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const emailRef = useRef<HTMLAnchorElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
 
   const mapHl = language === 'fr' ? 'fr' : language === 'en' ? 'en' : 'nl';
   const mapQueryEncoded = encodeURIComponent(OFFICE_MAP_QUERY);
@@ -23,134 +27,176 @@ export default function Contact() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
+      const trigger = {
+        trigger: section,
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      } as const;
+
       gsap.fromTo(
-        contentRef.current,
-        { y: '4vh', opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-          },
-        }
+        markerRef.current,
+        { y: 12, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, scrollTrigger: trigger }
+      );
+      gsap.fromTo(
+        headlineRef.current,
+        { y: 24, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.65, delay: 0.08, scrollTrigger: trigger }
+      );
+      gsap.fromTo(
+        emailRef.current,
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, delay: 0.18, scrollTrigger: trigger }
+      );
+      gsap.fromTo(
+        bodyRef.current,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, delay: 0.26, scrollTrigger: trigger }
       );
     }, section);
 
     return () => ctx.revert();
   }, []);
 
-  const contactIconShell =
-    'flex h-[3.25rem] w-[3.25rem] sm:h-[3.5rem] sm:w-[3.5rem] shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-white/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_4px_16px_-6px_rgba(74,108,111,0.4)]';
-
-  const contactIconSvg = 'w-7 h-7 sm:w-8 sm:h-8';
-
-  const valueClass =
-    'font-display font-semibold text-lg sm:text-xl leading-snug tracking-tight break-words';
+  const email = t('contact.email');
+  const address = t('contact.address');
 
   return (
     <section
       ref={sectionRef}
       id="contact"
-      className="relative py-12 sm:py-16 md:py-20 lg:py-24 z-[70]"
+      className="relative z-[70] py-20 md:py-28 lg:py-32"
       style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
     >
-      <div className="max-w-7xl mx-auto w-full px-5 sm:px-6 lg:px-8">
-        <div ref={contentRef} className="w-full max-w-6xl xl:max-w-7xl">
-          <h2
-            className="font-display font-semibold text-3xl sm:text-4xl md:text-display-lg mb-4 md:mb-6"
-            style={{ color: 'var(--elaz-text-primary)' }}
-          >
-            {t('contact.title')}
-          </h2>
+      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
+        <div
+          ref={markerRef}
+          className="section-marker mb-10 md:mb-14 flex items-center gap-3"
+        >
+          <span className="inline-block w-6 h-px" style={{ background: 'var(--elaz-text-muted)' }} />
+          <span>§ 04</span>
+          <span style={{ color: 'var(--elaz-text-muted)' }}>·</span>
+          <span>{t('contact.title')}</span>
+        </div>
 
+        <h2
+          ref={headlineRef}
+          className="text-editorial-xl max-w-[16ch] mb-14 md:mb-20"
+          style={{ color: 'var(--elaz-text-primary)' }}
+        >
+          {t('contact.title')}.
+        </h2>
+
+        <div className="mb-16 md:mb-24 max-w-[52ch]">
           <p
-            className="text-sm sm:text-base md:text-lg leading-relaxed mb-8 md:mb-10 max-w-2xl"
-            style={{ color: 'var(--elaz-text-secondary)' }}
+            className="mb-4 md:mb-5 font-mono text-[11px] tracking-[0.18em] uppercase"
+            style={{ color: 'var(--elaz-text-muted)' }}
           >
             {t('contact.body')}
           </p>
-
-          <div className="mb-10 md:mb-12 lg:mb-14">
-            <p
-              className="font-brand text-xl sm:text-2xl md:text-3xl lg:text-4xl uppercase"
+          <a
+            ref={emailRef}
+            href={`mailto:${email}`}
+            className="group inline-flex items-baseline gap-3 md:gap-4"
+          >
+            <span
+              className="font-editorial text-editorial-lg underline decoration-1 underline-offset-[0.2em] decoration-[color:var(--elaz-border)] transition-colors duration-200 group-hover:decoration-[color:var(--elaz-accent)] group-hover:text-[color:var(--elaz-accent)]"
               style={{ color: 'var(--elaz-text-primary)' }}
             >
-              {t('contact.company')} {t('contact.legalForm')}
-            </p>
-            <p
-              className="mt-2 font-mono text-xs sm:text-sm tracking-wide"
+              {email}
+            </span>
+            <ArrowUpRight
+              className="h-5 w-5 md:h-6 md:w-6 self-center transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               style={{ color: 'var(--elaz-text-muted)' }}
+              aria-hidden
+            />
+          </a>
+        </div>
+
+        <div className="hairline mb-12 md:mb-16" />
+
+        <div ref={bodyRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div className="lg:col-span-7">
+            <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] lg:aspect-[16/10] border border-[color:var(--elaz-border)] overflow-hidden">
+              <iframe
+                title={OFFICE_MAP_QUERY}
+                src={mapEmbedSrc}
+                className="absolute inset-0 h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                style={{
+                  filter: 'grayscale(1) contrast(1.02) brightness(0.98)',
+                }}
+              />
+            </div>
+            <a
+              href={OFFICE_MAP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] uppercase border-b border-[color:var(--elaz-text-primary)] pb-0.5 transition-colors duration-200 hover:border-[color:var(--elaz-accent)] hover:text-[color:var(--elaz-accent)]"
+              style={{ color: 'var(--elaz-text-primary)' }}
             >
-              {t('contact.vatNumber')}
-            </p>
+              {t('contact.mapOpen')}
+              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+            </a>
           </div>
 
-          <div
-            className="grid grid-cols-1 items-stretch lg:grid-cols-12 gap-10 lg:gap-10 xl:gap-12 border-t pt-10 md:pt-12 lg:pt-14"
-            style={{ borderColor: 'var(--elaz-border)' }}
-          >
-            <div className="lg:col-span-7 xl:col-span-8 min-w-0">
-              <div
-                className="relative w-full overflow-hidden rounded-2xl bg-[var(--elaz-bg-primary)] shadow-[0_1px_0_rgba(28,25,23,0.05),0_20px_50px_-24px_rgba(28,25,23,0.2)] ring-1 ring-black/[0.06] aspect-[4/3] sm:aspect-[3/2] lg:aspect-[16/10]"
-              >
-                <iframe
-                  title={OFFICE_MAP_QUERY}
-                  src={mapEmbedSrc}
-                  className="absolute inset-0 h-full w-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 xl:col-span-4 flex min-h-0 min-w-0 flex-col gap-6 sm:gap-7 lg:justify-start lg:gap-7 xl:gap-8">
-              <div className="flex gap-4 sm:gap-5 min-w-0 items-start">
+          <aside className="lg:col-span-5">
+            <div className="border-t border-[color:var(--elaz-border)]">
+              <div className="py-5 md:py-6 border-b border-[color:var(--elaz-border)]">
                 <div
-                  className={contactIconShell}
-                  style={{ backgroundColor: 'var(--elaz-accent)' }}
+                  className="font-mono text-[11px] tracking-[0.18em] uppercase mb-2"
+                  style={{ color: 'var(--elaz-text-muted)' }}
                 >
-                  <MapPin
-                    className={contactIconSvg}
-                    strokeWidth={1.5}
-                    style={{ color: 'var(--elaz-bg-primary)' }}
-                    aria-hidden
-                  />
+                  Entity
                 </div>
                 <p
-                  className={`${valueClass} min-w-0 flex-1 whitespace-pre-line pt-0.5 sm:pt-1`}
+                  className="font-display font-semibold text-xl md:text-2xl tracking-tight"
                   style={{ color: 'var(--elaz-text-primary)' }}
                 >
-                  {t('contact.address')}
+                  {t('contact.company')} {t('contact.legalForm')}
+                </p>
+                <p
+                  className="mt-1 font-mono text-[12px] tracking-[0.12em]"
+                  style={{ color: 'var(--elaz-text-muted)' }}
+                >
+                  {t('contact.vatNumber')}
                 </p>
               </div>
 
-              <div className="flex gap-4 sm:gap-5 min-w-0 items-start">
+              <div className="py-5 md:py-6 border-b border-[color:var(--elaz-border)]">
                 <div
-                  className={contactIconShell}
-                  style={{ backgroundColor: 'var(--elaz-accent)' }}
+                  className="font-mono text-[11px] tracking-[0.18em] uppercase mb-2"
+                  style={{ color: 'var(--elaz-text-muted)' }}
                 >
-                  <Mail
-                    className={contactIconSvg}
-                    strokeWidth={1.5}
-                    style={{ color: 'var(--elaz-bg-primary)' }}
-                    aria-hidden
-                  />
+                  {t('contact.lblAddress')}
                 </div>
-                <a
-                  href={`mailto:${t('contact.email')}`}
-                  className={`${valueClass} min-w-0 flex-1 pt-0.5 sm:pt-1 text-base sm:text-lg md:text-xl break-all transition-opacity hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--elaz-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--elaz-bg-primary)] rounded-sm inline-block`}
+                <p
+                  className="text-[15px] md:text-base leading-[1.65] whitespace-pre-line"
                   style={{ color: 'var(--elaz-text-primary)' }}
                 >
-                  {t('contact.email')}
+                  {address}
+                </p>
+              </div>
+
+              <div className="py-5 md:py-6">
+                <div
+                  className="font-mono text-[11px] tracking-[0.18em] uppercase mb-2"
+                  style={{ color: 'var(--elaz-text-muted)' }}
+                >
+                  {t('contact.lblEmail')}
+                </div>
+                <a
+                  href={`mailto:${email}`}
+                  className="text-[15px] md:text-base transition-colors duration-200 hover:text-[color:var(--elaz-accent)] break-all"
+                  style={{ color: 'var(--elaz-text-primary)' }}
+                >
+                  {email}
                 </a>
               </div>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Audiowide&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -77,6 +77,79 @@
     font-weight: 400;
     letter-spacing: 0.04em;
     line-height: 1.1;
+  }
+
+  /* Editorial / clinical serif voice — used for publication-style headlines
+     and pull quotes. Pairs with the Audiowide brand wordmark. */
+  .font-editorial {
+    font-family: 'EB Garamond', 'Iowan Old Style', 'Palatino Linotype', serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+  }
+
+  .text-editorial-xl {
+    font-family: 'EB Garamond', 'Iowan Old Style', 'Palatino Linotype', serif;
+    font-weight: 400;
+    font-size: clamp(2.25rem, 6.5vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+  }
+
+  .text-editorial-lg {
+    font-family: 'EB Garamond', 'Iowan Old Style', 'Palatino Linotype', serif;
+    font-weight: 400;
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  /* Section-paragraph marker — e.g. "§ 01 WHO WE ARE" */
+  .section-marker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--elaz-text-secondary);
+  }
+
+  /* Hairline 1px divider — the core connective tissue */
+  .hairline {
+    height: 1px;
+    background: var(--elaz-border);
+    width: 100%;
+  }
+
+  .hairline-v {
+    width: 1px;
+    background: var(--elaz-border);
+    align-self: stretch;
+  }
+
+  /* Editorial metadata row — small dl-style key/value used in hero/contact */
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--elaz-border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--elaz-text-secondary);
+  }
+
+  .meta-row:last-child {
+    border-bottom: 1px solid var(--elaz-border);
+  }
+
+  .meta-row .meta-value {
+    color: var(--elaz-text-primary);
+    text-align: right;
+    letter-spacing: 0.04em;
   }
 
   .text-display {

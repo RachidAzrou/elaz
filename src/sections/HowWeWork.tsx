@@ -5,76 +5,66 @@ import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const STEPS = [
+  { number: '01', titleKey: 'how.step1.title', descKey: 'how.step1.desc' },
+  { number: '02', titleKey: 'how.step2.title', descKey: 'how.step2.desc' },
+  { number: '03', titleKey: 'how.step3.title', descKey: 'how.step3.desc' },
+  { number: '04', titleKey: 'how.step4.title', descKey: 'how.step4.desc' },
+  { number: '05', titleKey: 'how.step5.title', descKey: 'how.step5.desc' },
+  { number: '06', titleKey: 'how.step6.title', descKey: 'how.step6.desc' },
+] as const;
+
 export default function HowWeWork() {
   const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
+  const markerRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const introRef = useRef<HTMLParagraphElement>(null);
-  const stepsRef = useRef<HTMLDivElement>(null);
-
-  const steps = [
-    { number: '01', titleKey: 'how.step1.title', descKey: 'how.step1.desc' },
-    { number: '02', titleKey: 'how.step2.title', descKey: 'how.step2.desc' },
-    { number: '03', titleKey: 'how.step3.title', descKey: 'how.step3.desc' },
-    { number: '04', titleKey: 'how.step4.title', descKey: 'how.step4.desc' },
-    { number: '05', titleKey: 'how.step5.title', descKey: 'how.step5.desc' },
-    { number: '06', titleKey: 'how.step6.title', descKey: 'how.step6.desc' },
-  ];
+  const tableRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      const stepItems = stepsRef.current?.querySelectorAll('.step-item');
+      const trigger = {
+        trigger: section,
+        start: 'top 78%',
+        toggleActions: 'play none none reverse',
+      } as const;
+
+      gsap.fromTo(
+        markerRef.current,
+        { y: 12, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, scrollTrigger: trigger }
+      );
 
       gsap.fromTo(
         headlineRef.current,
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
+        { y: 24, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.65, delay: 0.08, scrollTrigger: trigger }
       );
 
       gsap.fromTo(
         introRef.current,
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.5,
-          delay: 0.1,
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.55, delay: 0.18, scrollTrigger: trigger }
       );
 
-      if (stepItems?.length) {
+      const rows = tableRef.current?.querySelectorAll('.step-row');
+      if (rows && rows.length > 0) {
         gsap.fromTo(
-          stepItems,
-          { x: -28, autoAlpha: 0 },
+          rows,
+          { y: 14, opacity: 0 },
           {
-            x: 0,
-            autoAlpha: 1,
+            y: 0,
+            opacity: 1,
             duration: 0.5,
-            ease: 'power2.out',
-            stagger: {
-              each: 0.14,
-              from: 'start',
-            },
+            stagger: 0.08,
+            delay: 0.28,
             scrollTrigger: {
-              trigger: stepsRef.current,
-              start: 'top 82%',
+              trigger: tableRef.current,
+              start: 'top 85%',
               toggleActions: 'play none none reverse',
             },
           }
@@ -89,60 +79,71 @@ export default function HowWeWork() {
     <section
       ref={sectionRef}
       id="approach"
-      className="relative z-30 py-16 md:py-24 flex flex-col justify-center"
+      className="relative z-30 py-20 md:py-28 lg:py-32"
       style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
     >
-      <div className="max-w-7xl mx-auto w-full px-5 sm:px-6 lg:px-8">
-        <h2
-          ref={headlineRef}
-          className="font-display font-semibold text-display-lg mb-4 md:mb-6"
-          style={{ color: 'var(--elaz-text-primary)' }}
+      <div className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-12">
+        <div
+          ref={markerRef}
+          className="section-marker mb-10 md:mb-14 flex items-center gap-3"
         >
-          {t('how.title')}
-        </h2>
+          <span className="inline-block w-6 h-px" style={{ background: 'var(--elaz-text-muted)' }} />
+          <span>§ 02</span>
+          <span style={{ color: 'var(--elaz-text-muted)' }}>·</span>
+          <span>{t('how.title')}</span>
+        </div>
 
-        <p
-          ref={introRef}
-          className="text-sm sm:text-base mb-6 md:mb-8"
-          style={{ color: 'var(--elaz-text-secondary)' }}
-        >
-          {t('how.intro')}
-        </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-14 md:mb-20">
+          <h2
+            ref={headlineRef}
+            className="text-editorial-xl lg:col-span-7 max-w-[18ch]"
+            style={{ color: 'var(--elaz-text-primary)' }}
+          >
+            {t('how.title')}.
+          </h2>
+          <p
+            ref={introRef}
+            className="lg:col-span-5 lg:pt-2 lg:pl-8 lg:border-l lg:border-[color:var(--elaz-border)] text-[15px] md:text-base leading-[1.75] max-w-[52ch]"
+            style={{ color: 'var(--elaz-text-secondary)' }}
+          >
+            {t('how.intro')}
+          </p>
+        </div>
+
+        <div className="hairline mb-0" />
 
         <div
-          ref={stepsRef}
-          className="flex flex-col gap-4 md:gap-5"
+          ref={tableRef}
+          className="flex flex-col"
+          role="list"
         >
-          {steps.map((step) => (
+          {STEPS.map((step, i) => (
             <div
               key={step.number}
-              className="step-item w-full max-w-3xl"
+              role="listitem"
+              className="step-row group grid grid-cols-12 gap-4 md:gap-8 items-baseline py-6 md:py-8 border-b border-[color:var(--elaz-border)] transition-colors duration-200"
             >
-              <div className="flex gap-4 md:gap-6 items-start">
-                <div
-                  className="flex size-[2.75rem] shrink-0 items-center justify-center rounded-xl font-mono text-base font-semibold tabular-nums leading-none tracking-wide shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_2px_6px_-2px_rgba(28,25,23,0.12)] ring-1 ring-inset ring-white/10 sm:size-12 sm:text-lg md:size-[3.25rem] md:text-xl"
-                  style={{
-                    backgroundColor: 'var(--elaz-accent)',
-                    color: 'var(--elaz-bg-primary)',
-                  }}
+              <div className="col-span-2 md:col-span-1">
+                <span
+                  className="font-mono text-[13px] md:text-sm tracking-[0.1em] tabular-nums"
+                  style={{ color: 'var(--elaz-text-muted)' }}
                 >
                   {step.number}
-                </div>
-                <div className="flex-1 min-w-0 pt-0.5 md:pt-1">
-                  <h3 
-                    className="font-medium text-sm sm:text-base md:text-lg mb-0.5 md:mb-1" 
-                    style={{ color: 'var(--elaz-text-primary)' }}
-                  >
-                    {t(step.titleKey)}
-                  </h3>
-                  <p 
-                    className="text-xs sm:text-sm md:text-base" 
-                    style={{ color: 'var(--elaz-text-secondary)' }}
-                  >
-                    {t(step.descKey)}
-                  </p>
-                </div>
+                </span>
               </div>
+              <h3
+                className="col-span-10 md:col-span-4 font-display font-medium text-lg md:text-xl leading-tight tracking-tight transition-colors duration-200 group-hover:text-[color:var(--elaz-accent)]"
+                style={{ color: 'var(--elaz-text-primary)' }}
+              >
+                {t(step.titleKey)}
+              </h3>
+              <p
+                className="col-span-12 md:col-span-7 text-[15px] md:text-base leading-[1.7] max-w-[56ch]"
+                style={{ color: 'var(--elaz-text-secondary)' }}
+              >
+                {t(step.descKey)}
+              </p>
+              {i === STEPS.length - 1 ? null : null}
             </div>
           ))}
         </div>

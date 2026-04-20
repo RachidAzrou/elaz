@@ -1,24 +1,65 @@
-import { useEffect } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 function BulletList({ items }: { items: string[] }) {
   return (
-    <ul className="my-4 list-none space-y-2.5 pl-0 sm:my-5">
+    <ul className="my-5 md:my-6 flex flex-col gap-3 md:gap-3.5 pl-0">
       {items.map((text) => (
         <li
           key={text}
-          className="flex gap-3 text-sm sm:text-base leading-relaxed"
+          className="flex gap-4 text-[15px] md:text-base leading-[1.7]"
           style={{ color: 'var(--elaz-text-secondary)' }}
         >
           <span
-            className="mt-2 h-1 w-1 shrink-0 rounded-full"
-            style={{ backgroundColor: 'var(--elaz-accent)' }}
             aria-hidden
+            className="mt-[0.65em] inline-block h-px w-3 shrink-0"
+            style={{ background: 'var(--elaz-text-muted)' }}
           />
           <span>{text}</span>
         </li>
       ))}
     </ul>
+  );
+}
+
+function Section({
+  id,
+  index,
+  title,
+  children,
+}: {
+  id: string;
+  index: string;
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <section
+      className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 pt-10 md:pt-14 pb-10 md:pb-14 border-t border-[color:var(--elaz-border)]"
+      aria-labelledby={id}
+    >
+      <div className="lg:col-span-3">
+        <span
+          className="font-mono text-[11px] tracking-[0.18em] uppercase"
+          style={{ color: 'var(--elaz-text-muted)' }}
+        >
+          § {index}
+        </span>
+        <h2
+          id={id}
+          className="mt-2 font-display font-semibold text-xl md:text-2xl leading-tight tracking-tight"
+          style={{ color: 'var(--elaz-text-primary)' }}
+        >
+          {title}
+        </h2>
+      </div>
+      <div
+        className="lg:col-span-9 max-w-[62ch] text-[15px] md:text-base leading-[1.75]"
+        style={{ color: 'var(--elaz-text-secondary)' }}
+      >
+        {children}
+      </div>
+    </section>
   );
 }
 
@@ -34,177 +75,130 @@ export default function PrivacyPage() {
   }, [t]);
 
   return (
-    <article className="relative pb-24">
-      <header
-        className="pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-36"
-        style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
-      >
-        <div className="mx-auto w-full max-w-3xl px-5 sm:px-6 lg:px-8">
-          <p
-            className="text-mono-label mb-4"
-            style={{ color: 'var(--elaz-accent)' }}
-          >
-            {t('privacy.eyebrow')}
-          </p>
-          <h1
-            className="font-display text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl"
-            style={{ color: 'var(--elaz-text-primary)' }}
-          >
-            {t('privacy.title')}
-          </h1>
-          <p
-            className="mt-4 text-sm sm:text-base"
-            style={{ color: 'var(--elaz-text-muted)' }}
-          >
-            {t('privacy.updated')}
-          </p>
+    <article
+      className="relative pb-20 md:pb-28"
+      style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
+    >
+      <header className="pt-28 md:pt-36 pb-14 md:pb-20">
+        <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
+          <div className="section-marker mb-10 md:mb-14 flex items-center gap-3">
+            <span
+              className="inline-block w-6 h-px"
+              style={{ background: 'var(--elaz-text-muted)' }}
+            />
+            <span>{t('privacy.eyebrow')}</span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-end">
+            <h1
+              className="lg:col-span-8 text-editorial-xl max-w-[18ch]"
+              style={{ color: 'var(--elaz-text-primary)' }}
+            >
+              {t('privacy.title')}.
+            </h1>
+            <p
+              className="lg:col-span-4 font-mono text-[11px] md:text-[12px] tracking-[0.16em] uppercase"
+              style={{ color: 'var(--elaz-text-muted)' }}
+            >
+              {t('privacy.updated')}
+            </p>
+          </div>
         </div>
       </header>
 
-      <div
-        className="mx-auto w-full max-w-3xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
-        style={{ color: 'var(--elaz-text-secondary)' }}
-      >
-        <p className="text-sm leading-relaxed sm:text-base">{t('privacy.intro.p1')}</p>
-        <p className="mt-4 text-sm leading-relaxed sm:text-base">
-          {t('privacy.intro.p2')}
-        </p>
-
-        <section className="mt-12" aria-labelledby="privacy-s1">
-          <h2
-            id="privacy-s1"
-            className="font-display text-xl font-semibold tracking-tight sm:text-2xl"
-            style={{ color: 'var(--elaz-text-primary)' }}
+      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 pb-10 md:pb-14">
+          <div className="lg:col-span-3" />
+          <div
+            className="lg:col-span-9 max-w-[62ch] text-[15px] md:text-base leading-[1.75]"
+            style={{ color: 'var(--elaz-text-secondary)' }}
           >
-            {t('privacy.s1.title')}
-          </h2>
-          <div className="mt-4 space-y-1 text-sm leading-relaxed sm:text-base">
+            <p>{t('privacy.intro.p1')}</p>
+            <p className="mt-4">{t('privacy.intro.p2')}</p>
+          </div>
+        </div>
+
+        <Section id="privacy-s1" index="01" title={t('privacy.s1.title')}>
+          <div className="space-y-1">
             <p>{t('privacy.s1.line1')}</p>
             <p>{t('privacy.s1.line2')}</p>
             <p>{t('privacy.s1.line3')}</p>
             <p>{t('privacy.s1.line4')}</p>
-            <p className="pt-2">{t('privacy.s1.vat')}</p>
-            <p>
-              {t('privacy.s1.emailLabel')}{' '}
-              <a
-                href={`mailto:${t('privacy.s1.email')}`}
-                className="underline decoration-1 underline-offset-2"
-                style={{ color: 'var(--elaz-accent)' }}
-              >
-                {t('privacy.s1.email')}
-              </a>
-            </p>
           </div>
-        </section>
-
-        <section className="mt-12" aria-labelledby="privacy-s2">
-          <h2
-            id="privacy-s2"
-            className="font-display text-xl font-semibold tracking-tight sm:text-2xl"
-            style={{ color: 'var(--elaz-text-primary)' }}
+          <p
+            className="mt-5 font-mono text-[12px] tracking-[0.1em]"
+            style={{ color: 'var(--elaz-text-muted)' }}
           >
-            {t('privacy.s2.title')}
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed sm:text-base">{t('privacy.s2.p1')}</p>
+            {t('privacy.s1.vat')}
+          </p>
+          <p className="mt-2">
+            <span style={{ color: 'var(--elaz-text-muted)' }}>
+              {t('privacy.s1.emailLabel')}{' '}
+            </span>
+            <a
+              href={`mailto:${t('privacy.s1.email')}`}
+              className="underline decoration-1 underline-offset-[3px] transition-colors hover:text-[color:var(--elaz-accent)]"
+              style={{ color: 'var(--elaz-text-primary)' }}
+            >
+              {t('privacy.s1.email')}
+            </a>
+          </p>
+        </Section>
+
+        <Section id="privacy-s2" index="02" title={t('privacy.s2.title')}>
+          <p>{t('privacy.s2.p1')}</p>
           <h3
-            className="mt-8 font-display text-base font-semibold sm:text-lg"
+            className="mt-8 font-display font-semibold text-base md:text-lg tracking-tight"
             style={{ color: 'var(--elaz-text-primary)' }}
           >
             {t('privacy.s2.surveyTitle')}
           </h3>
-          <p className="mt-3 text-sm leading-relaxed sm:text-base">
-            {t('privacy.s2.survey.p1')}
-          </p>
+          <p className="mt-3">{t('privacy.s2.survey.p1')}</p>
           <BulletList items={[t('privacy.s2.survey.bullet1')]} />
-          <p className="mt-3 text-sm leading-relaxed sm:text-base">
-            {t('privacy.s2.survey.p2')}
-          </p>
-          <p className="mt-3 text-sm leading-relaxed sm:text-base">
-            {t('privacy.s2.survey.p3')}
-          </p>
-        </section>
+          <p className="mt-3">{t('privacy.s2.survey.p2')}</p>
+          <p className="mt-3">{t('privacy.s2.survey.p3')}</p>
+        </Section>
 
-        <section className="mt-12" aria-labelledby="privacy-s3">
-          <h2
-            id="privacy-s3"
-            className="font-display text-xl font-semibold tracking-tight sm:text-2xl"
-            style={{ color: 'var(--elaz-text-primary)' }}
-          >
-            {t('privacy.s3.title')}
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed sm:text-base">
-            {t('privacy.s3.intro')}
-          </p>
+        <Section id="privacy-s3" index="03" title={t('privacy.s3.title')}>
+          <p>{t('privacy.s3.intro')}</p>
           <BulletList
             items={[t('privacy.s3.li1'), t('privacy.s3.li2'), t('privacy.s3.li3')]}
           />
-          <p className="text-sm leading-relaxed sm:text-base">{t('privacy.s3.footer')}</p>
-        </section>
+          <p>{t('privacy.s3.footer')}</p>
+        </Section>
 
-        <section className="mt-12" aria-labelledby="privacy-s4">
-          <h2
-            id="privacy-s4"
-            className="font-display text-xl font-semibold tracking-tight sm:text-2xl"
-            style={{ color: 'var(--elaz-text-primary)' }}
-          >
-            {t('privacy.s4.title')}
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed sm:text-base">{t('privacy.s4.p1')}</p>
+        <Section id="privacy-s4" index="04" title={t('privacy.s4.title')}>
+          <p>{t('privacy.s4.p1')}</p>
           <BulletList items={[t('privacy.s4.li1')]} />
-        </section>
+        </Section>
 
-        <section className="mt-12" aria-labelledby="privacy-s5">
-          <h2
-            id="privacy-s5"
-            className="font-display text-xl font-semibold tracking-tight sm:text-2xl"
+        <Section id="privacy-s5" index="05" title={t('privacy.s5.title')}>
+          <p>{t('privacy.s5.p1')}</p>
+          <p
+            className="mt-4 font-medium"
             style={{ color: 'var(--elaz-text-primary)' }}
           >
-            {t('privacy.s5.title')}
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed sm:text-base">{t('privacy.s5.p1')}</p>
-          <p className="mt-4 text-sm font-medium" style={{ color: 'var(--elaz-text-primary)' }}>
             {t('privacy.s5.concrete')}
           </p>
           <BulletList items={[t('privacy.s5.li1'), t('privacy.s5.li2')]} />
-        </section>
+        </Section>
 
-        <section className="mt-12" aria-labelledby="privacy-s6">
-          <h2
-            id="privacy-s6"
-            className="font-display text-xl font-semibold tracking-tight sm:text-2xl"
-            style={{ color: 'var(--elaz-text-primary)' }}
-          >
-            {t('privacy.s6.title')}
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed sm:text-base">{t('privacy.s6.p1')}</p>
-          <p className="mt-4 text-sm leading-relaxed sm:text-base">{t('privacy.s6.tech')}</p>
+        <Section id="privacy-s6" index="06" title={t('privacy.s6.title')}>
+          <p>{t('privacy.s6.p1')}</p>
+          <p className="mt-4">{t('privacy.s6.tech')}</p>
           <BulletList items={[t('privacy.s6.li1')]} />
-          <p className="mt-3 text-sm leading-relaxed sm:text-base">{t('privacy.s6.footer')}</p>
-        </section>
+          <p className="mt-3">{t('privacy.s6.footer')}</p>
+        </Section>
 
-        <section className="mt-12" aria-labelledby="privacy-s7">
-          <h2
-            id="privacy-s7"
-            className="font-display text-xl font-semibold tracking-tight sm:text-2xl"
-            style={{ color: 'var(--elaz-text-primary)' }}
-          >
-            {t('privacy.s7.title')}
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed sm:text-base">{t('privacy.s7.intro')}</p>
+        <Section id="privacy-s7" index="07" title={t('privacy.s7.title')}>
+          <p>{t('privacy.s7.intro')}</p>
           <BulletList
             items={[t('privacy.s7.li1'), t('privacy.s7.li2'), t('privacy.s7.li3')]}
           />
-        </section>
+        </Section>
 
-        <section className="mt-12" aria-labelledby="privacy-s8">
-          <h2
-            id="privacy-s8"
-            className="font-display text-xl font-semibold tracking-tight sm:text-2xl"
-            style={{ color: 'var(--elaz-text-primary)' }}
-          >
-            {t('privacy.s8.title')}
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed sm:text-base">{t('privacy.s8.intro')}</p>
+        <Section id="privacy-s8" index="08" title={t('privacy.s8.title')}>
+          <p>{t('privacy.s8.intro')}</p>
           <BulletList
             items={[
               t('privacy.s8.li1'),
@@ -213,31 +207,24 @@ export default function PrivacyPage() {
               t('privacy.s8.li4'),
             ]}
           />
-          <p className="mt-4 text-sm leading-relaxed sm:text-base">
-            {t('privacy.s8.contact')}
-          </p>
-          <p className="mt-2 text-sm leading-relaxed sm:text-base">
+          <p className="mt-4">{t('privacy.s8.contact')}</p>
+          <p className="mt-2">
             <a
               href={`mailto:${t('privacy.s8.email')}`}
-              className="underline decoration-1 underline-offset-2"
-              style={{ color: 'var(--elaz-accent)' }}
+              className="underline decoration-1 underline-offset-[3px] transition-colors hover:text-[color:var(--elaz-accent)]"
+              style={{ color: 'var(--elaz-text-primary)' }}
             >
               {t('privacy.s8.email')}
             </a>
           </p>
-        </section>
+        </Section>
 
-        <section className="mt-12" aria-labelledby="privacy-s9">
-          <h2
-            id="privacy-s9"
-            className="font-display text-xl font-semibold tracking-tight sm:text-2xl"
-            style={{ color: 'var(--elaz-text-primary)' }}
-          >
-            {t('privacy.s9.title')}
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed sm:text-base">{t('privacy.s9.p1')}</p>
-          <p className="mt-3 text-sm leading-relaxed sm:text-base">{t('privacy.s9.p2')}</p>
-        </section>
+        <Section id="privacy-s9" index="09" title={t('privacy.s9.title')}>
+          <p>{t('privacy.s9.p1')}</p>
+          <p className="mt-3">{t('privacy.s9.p2')}</p>
+        </Section>
+
+        <div className="border-t border-[color:var(--elaz-border)]" />
       </div>
     </article>
   );

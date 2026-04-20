@@ -35,20 +35,62 @@ export default function Footer() {
     return () => ctx.revert();
   }, []);
 
+  const year = new Date().getFullYear();
+
   return (
     <footer
       ref={footerRef}
-      className="relative py-8 sm:py-10 md:py-12 z-[80]"
+      className="relative z-[80]"
       style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
     >
-      <div className="max-w-7xl mx-auto w-full px-5 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 sm:gap-6 md:gap-8">
-          <Link to="/privacy" className="nav-link text-sm">
-            {t('footer.privacy')}
-          </Link>
-          <Link to="/cookies" className="nav-link text-sm">
-            {t('footer.cookies')}
-          </Link>
+      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
+        <div
+          className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-8 py-8 md:py-10 border-t border-[color:var(--elaz-border)]"
+        >
+          <div className="flex items-baseline gap-4 md:gap-6">
+            <Link
+              to="/"
+              className="font-brand text-[13px] md:text-sm leading-none transition-opacity hover:opacity-80"
+              style={{ color: 'var(--elaz-text-primary)' }}
+            >
+              ELAZ GROUP
+            </Link>
+            <span
+              className="hidden sm:inline-block font-mono text-[11px] tracking-[0.16em] uppercase"
+              style={{ color: 'var(--elaz-text-muted)' }}
+            >
+              Antwerp &nbsp;·&nbsp; BE
+            </span>
+          </div>
+
+          <nav className="flex items-center gap-5 md:gap-6">
+            <Link
+              to="/privacy"
+              className="font-mono text-[11px] md:text-[12px] tracking-[0.16em] uppercase transition-colors duration-200 hover:text-[color:var(--elaz-accent)]"
+              style={{ color: 'var(--elaz-text-secondary)' }}
+            >
+              {t('footer.privacy')}
+            </Link>
+            <span
+              aria-hidden
+              className="inline-block w-px h-3"
+              style={{ background: 'var(--elaz-border)' }}
+            />
+            <Link
+              to="/cookies"
+              className="font-mono text-[11px] md:text-[12px] tracking-[0.16em] uppercase transition-colors duration-200 hover:text-[color:var(--elaz-accent)]"
+              style={{ color: 'var(--elaz-text-secondary)' }}
+            >
+              {t('footer.cookies')}
+            </Link>
+          </nav>
+
+          <p
+            className="font-mono text-[11px] tracking-[0.14em] uppercase"
+            style={{ color: 'var(--elaz-text-muted)' }}
+          >
+            © {year} &nbsp;ELAZ Group
+          </p>
         </div>
       </div>
     </footer>

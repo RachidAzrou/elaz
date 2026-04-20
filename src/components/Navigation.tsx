@@ -25,14 +25,13 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -52,23 +51,24 @@ export default function Navigation() {
     setIsMobileMenuOpen(false);
   };
 
+  const solid = isScrolled || isMobileMenuOpen;
+
   return (
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-          isScrolled || isMobileMenuOpen
-            ? 'py-2 sm:py-3'
-            : 'py-3 sm:py-4 md:py-6'
+          solid ? 'py-3 md:py-4' : 'py-4 md:py-6'
         }`}
         style={{
-          backgroundColor: isScrolled || isMobileMenuOpen 
-            ? 'rgba(250, 250, 248, 0.98)' 
-            : 'transparent',
-          backdropFilter: isScrolled || isMobileMenuOpen ? 'blur(12px)' : 'none',
-          boxShadow: isScrolled ? '0 1px 0 var(--elaz-border)' : 'none',
+          backgroundColor: solid ? 'rgba(250, 250, 248, 0.96)' : 'transparent',
+          backdropFilter: solid ? 'blur(14px) saturate(1.1)' : 'none',
+          WebkitBackdropFilter: solid ? 'blur(14px) saturate(1.1)' : 'none',
+          borderBottom: solid
+            ? '1px solid var(--elaz-border)'
+            : '1px solid transparent',
         }}
       >
-        <div className="max-w-7xl mx-auto w-full px-4 sm:px-5 md:px-8 flex justify-between items-center">
+        <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12 flex justify-between items-center gap-6">
           <Link
             to="/"
             onClick={(e) => {
@@ -79,16 +79,17 @@ export default function Navigation() {
                 setIsMobileMenuOpen(false);
               }
             }}
-            className="font-brand text-sm sm:text-base md:text-lg transition-opacity hover:opacity-80"
+            className="font-brand text-sm sm:text-base md:text-[17px] leading-none transition-opacity hover:opacity-80"
             style={{ color: 'var(--elaz-text-primary)' }}
           >
             ELAZ GROUP
           </Link>
 
-          {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {navLinks.map((link) =>
-              isHome ? (
+          <div className="hidden md:flex items-center gap-7 lg:gap-9">
+            {navLinks.map((link) => {
+              const className =
+                'font-mono text-[11px] lg:text-[12px] tracking-[0.16em] uppercase transition-colors duration-200 hover:text-[color:var(--elaz-accent)]';
+              return isHome ? (
                 <a
                   key={link.href}
                   href={link.href}
@@ -96,7 +97,8 @@ export default function Navigation() {
                     e.preventDefault();
                     scrollToSection(link.href);
                   }}
-                  className="nav-link"
+                  className={className}
+                  style={{ color: 'var(--elaz-text-secondary)' }}
                 >
                   {t(link.labelKey)}
                 </a>
@@ -104,34 +106,45 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   to={`/${link.href}`}
-                  className="nav-link"
+                  className={className}
+                  style={{ color: 'var(--elaz-text-secondary)' }}
                 >
                   {t(link.labelKey)}
                 </Link>
-              )
-            )}
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-1 sm:gap-2">
-            {/* Language switcher - desktop */}
-            <div className="hidden md:flex items-center gap-1 mr-2 lg:mr-4">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => setLanguage(lang.code as 'nl' | 'en' | 'fr')}
-                  className={`px-2 py-1 text-sm font-medium transition-colors ${
-                    language === lang.code
-                      ? ''
-                      : 'opacity-50 hover:opacity-80'
-                  }`}
-                  style={{ color: 'var(--elaz-text-primary)' }}
-                >
-                  {lang.label}
-                </button>
-              ))}
+            <div className="hidden md:flex items-baseline gap-1.5 font-mono text-[11px] lg:text-[12px] tracking-[0.14em] uppercase">
+              {languages.map((lang, i) => {
+                const active = language === lang.code;
+                return (
+                  <span key={lang.code} className="inline-flex items-baseline gap-1.5">
+                    {i > 0 ? (
+                      <span style={{ color: 'var(--elaz-text-muted)' }}>/</span>
+                    ) : null}
+                    <button
+                      onClick={() => setLanguage(lang.code as 'nl' | 'en' | 'fr')}
+                      className={`transition-colors duration-200 ${
+                        active
+                          ? 'underline decoration-from-font underline-offset-[3px]'
+                          : 'hover:text-[color:var(--elaz-text-primary)]'
+                      }`}
+                      style={{
+                        color: active
+                          ? 'var(--elaz-text-primary)'
+                          : 'var(--elaz-text-muted)',
+                      }}
+                      aria-current={active ? 'true' : undefined}
+                    >
+                      {lang.label}
+                    </button>
+                  </span>
+                );
+              })}
             </div>
 
-            {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden p-2 -mr-2 touch-manipulation"
@@ -149,7 +162,6 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {/* Mobile menu overlay */}
       <div
         className={`fixed inset-0 z-[99] md:hidden transition-all duration-300 ${
           isMobileMenuOpen
@@ -158,53 +170,87 @@ export default function Navigation() {
         }`}
         style={{ backgroundColor: 'rgba(250, 250, 248, 0.98)' }}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-6 sm:gap-8 pt-16 px-6">
-          {navLinks.map((link) =>
-            isHome ? (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                }}
-                className="font-display text-xl sm:text-2xl font-medium"
-                style={{ color: 'var(--elaz-text-primary)' }}
-              >
-                {t(link.labelKey)}
-              </a>
-            ) : (
-              <Link
-                key={link.href}
-                to={`/${link.href}`}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="font-display text-xl sm:text-2xl font-medium"
-                style={{ color: 'var(--elaz-text-primary)' }}
-              >
-                {t(link.labelKey)}
-              </Link>
-            )
-          )}
+        <div className="flex flex-col h-full pt-24 px-6 sm:px-8">
+          <nav className="flex flex-col">
+            {navLinks.map((link, i) =>
+              isHome ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(link.href);
+                  }}
+                  className={`group flex items-baseline justify-between py-5 border-b border-[color:var(--elaz-border)] ${
+                    i === 0 ? 'border-t' : ''
+                  }`}
+                >
+                  <span
+                    className="font-editorial text-[28px] sm:text-[32px] leading-none"
+                    style={{ color: 'var(--elaz-text-primary)' }}
+                  >
+                    {t(link.labelKey)}
+                  </span>
+                  <span
+                    className="font-mono text-[11px] tracking-[0.18em] uppercase"
+                    style={{ color: 'var(--elaz-text-muted)' }}
+                  >
+                    0{i + 1}
+                  </span>
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={`/${link.href}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`group flex items-baseline justify-between py-5 border-b border-[color:var(--elaz-border)] ${
+                    i === 0 ? 'border-t' : ''
+                  }`}
+                >
+                  <span
+                    className="font-editorial text-[28px] sm:text-[32px] leading-none"
+                    style={{ color: 'var(--elaz-text-primary)' }}
+                  >
+                    {t(link.labelKey)}
+                  </span>
+                  <span
+                    className="font-mono text-[11px] tracking-[0.18em] uppercase"
+                    style={{ color: 'var(--elaz-text-muted)' }}
+                  >
+                    0{i + 1}
+                  </span>
+                </Link>
+              )
+            )}
+          </nav>
 
-          {/* Language switcher - mobile */}
-          <div 
-            className="flex items-center gap-3 sm:gap-4 mt-6 sm:mt-8 pt-6 sm:pt-8 w-full justify-center" 
-            style={{ borderTop: '1px solid var(--elaz-border)' }}
-          >
-            {languages.map((lang) => (
-              <button
-                key={lang.code}
-                onClick={() => setLanguage(lang.code as 'nl' | 'en' | 'fr')}
-                className={`px-3 sm:px-4 py-2 text-base sm:text-lg font-medium transition-colors ${
-                  language === lang.code
-                    ? ''
-                    : 'opacity-50'
-                }`}
-                style={{ color: 'var(--elaz-text-primary)' }}
-              >
-                {lang.label}
-              </button>
-            ))}
+          <div className="mt-10 flex items-baseline gap-2 font-mono text-[12px] tracking-[0.14em] uppercase">
+            {languages.map((lang, i) => {
+              const active = language === lang.code;
+              return (
+                <span key={lang.code} className="inline-flex items-baseline gap-2">
+                  {i > 0 ? (
+                    <span style={{ color: 'var(--elaz-text-muted)' }}>/</span>
+                  ) : null}
+                  <button
+                    onClick={() => setLanguage(lang.code as 'nl' | 'en' | 'fr')}
+                    className={`py-1 transition-colors duration-200 ${
+                      active
+                        ? 'underline decoration-from-font underline-offset-[3px]'
+                        : ''
+                    }`}
+                    style={{
+                      color: active
+                        ? 'var(--elaz-text-primary)'
+                        : 'var(--elaz-text-muted)',
+                    }}
+                    aria-current={active ? 'true' : undefined}
+                  >
+                    {lang.label}
+                  </button>
+                </span>
+              );
+            })}
           </div>
         </div>
       </div>
