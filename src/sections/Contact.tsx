@@ -87,7 +87,7 @@ export default function Contact() {
           {t('contact.title')}.
         </h2>
 
-        <div className="mb-16 md:mb-24 max-w-[52ch]">
+        <div className="mb-14 md:mb-24 max-w-[52ch]">
           <p
             className="mb-4 md:mb-5 font-mono text-[11px] tracking-[0.18em] uppercase"
             style={{ color: 'var(--elaz-text-muted)' }}
@@ -97,16 +97,16 @@ export default function Contact() {
           <a
             ref={emailRef}
             href={`mailto:${email}`}
-            className="group inline-flex items-baseline gap-3 md:gap-4"
+            className="group flex flex-wrap items-baseline gap-x-3 md:gap-x-4 gap-y-1 max-w-full"
           >
             <span
-              className="font-editorial text-editorial-lg underline decoration-1 underline-offset-[0.2em] decoration-[color:var(--elaz-border)] transition-colors duration-200 group-hover:decoration-[color:var(--elaz-accent)] group-hover:text-[color:var(--elaz-accent)]"
+              className="font-editorial text-editorial-lg underline decoration-1 underline-offset-[0.2em] decoration-[color:var(--elaz-border)] transition-colors duration-200 group-hover:decoration-[color:var(--elaz-accent)] group-hover:text-[color:var(--elaz-accent)] [overflow-wrap:anywhere]"
               style={{ color: 'var(--elaz-text-primary)' }}
             >
               {email}
             </span>
             <ArrowUpRight
-              className="h-5 w-5 md:h-6 md:w-6 self-center transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              className="h-5 w-5 md:h-6 md:w-6 self-center shrink-0 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               style={{ color: 'var(--elaz-text-muted)' }}
               aria-hidden
             />
@@ -115,7 +115,7 @@ export default function Contact() {
 
         <div className="hairline mb-12 md:mb-16" />
 
-        <div ref={bodyRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div ref={bodyRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-7">
             <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] lg:aspect-[16/10] border border-[color:var(--elaz-border)] overflow-hidden">
               <iframe
@@ -152,13 +152,13 @@ export default function Contact() {
                   Entity
                 </div>
                 <p
-                  className="font-display font-semibold text-xl md:text-2xl tracking-tight"
+                  className="font-display font-semibold text-lg sm:text-xl md:text-2xl tracking-tight [overflow-wrap:anywhere]"
                   style={{ color: 'var(--elaz-text-primary)' }}
                 >
                   {t('contact.company')} {t('contact.legalForm')}
                 </p>
                 <p
-                  className="mt-1 font-mono text-[12px] tracking-[0.12em]"
+                  className="mt-1 font-mono text-[11px] sm:text-[12px] tracking-[0.1em] sm:tracking-[0.12em] [overflow-wrap:anywhere]"
                   style={{ color: 'var(--elaz-text-muted)' }}
                 >
                   {t('contact.vatNumber')}

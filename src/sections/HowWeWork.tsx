@@ -117,11 +117,11 @@ export default function HowWeWork() {
           className="flex flex-col"
           role="list"
         >
-          {STEPS.map((step, i) => (
+          {STEPS.map((step) => (
             <div
               key={step.number}
               role="listitem"
-              className="step-row group grid grid-cols-12 gap-4 md:gap-8 items-baseline py-6 md:py-8 border-b border-[color:var(--elaz-border)] transition-colors duration-200"
+              className="step-row group grid grid-cols-12 gap-x-4 gap-y-3 md:gap-x-8 md:gap-y-0 md:items-baseline py-6 md:py-8 border-b border-[color:var(--elaz-border)] transition-colors duration-200"
             >
               <div className="col-span-2 md:col-span-1">
                 <span
@@ -132,18 +132,17 @@ export default function HowWeWork() {
                 </span>
               </div>
               <h3
-                className="col-span-10 md:col-span-4 font-display font-medium text-lg md:text-xl leading-tight tracking-tight transition-colors duration-200 group-hover:text-[color:var(--elaz-accent)]"
+                className="col-span-10 md:col-span-4 font-display font-medium text-base sm:text-lg md:text-xl leading-tight tracking-tight transition-colors duration-200 group-hover:text-[color:var(--elaz-accent)]"
                 style={{ color: 'var(--elaz-text-primary)' }}
               >
                 {t(step.titleKey)}
               </h3>
               <p
-                className="col-span-12 md:col-span-7 text-[15px] md:text-base leading-[1.7] max-w-[56ch]"
+                className="col-start-3 col-span-10 md:col-start-auto md:col-span-7 text-[14px] sm:text-[15px] md:text-base leading-[1.65] md:leading-[1.7] max-w-[56ch]"
                 style={{ color: 'var(--elaz-text-secondary)' }}
               >
                 {t(step.descKey)}
               </p>
-              {i === STEPS.length - 1 ? null : null}
             </div>
           ))}
         </div>

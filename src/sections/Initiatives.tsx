@@ -94,26 +94,26 @@ export default function Initiatives() {
             style={{ background: 'var(--elaz-accent)' }}
           />
 
-          <header className="flex items-center justify-between py-4 md:py-5 border-b border-[color:var(--elaz-border)]">
+          <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5 py-4 md:py-5 border-b border-[color:var(--elaz-border)]">
             <span
-              className="font-mono text-[11px] md:text-xs tracking-[0.18em] uppercase tabular-nums"
+              className="font-mono text-[10px] sm:text-[11px] md:text-xs tracking-[0.16em] sm:tracking-[0.18em] uppercase tabular-nums"
               style={{ color: 'var(--elaz-text-muted)' }}
             >
               No. 01 / 01
             </span>
             <span
-              className="font-mono text-[11px] md:text-xs tracking-[0.18em] uppercase"
+              className="font-mono text-[10px] sm:text-[11px] md:text-xs tracking-[0.16em] sm:tracking-[0.18em] uppercase"
               style={{ color: 'var(--elaz-accent)' }}
             >
               {t('initiatives.sonexa.label')}
             </span>
           </header>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 py-10 md:py-14">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-16 py-8 sm:py-10 md:py-14">
             <div className="lg:col-span-5">
               <h3
                 id="sonexa-title"
-                className="font-brand leading-none tracking-tight text-[44px] sm:text-[56px] md:text-[68px] lg:text-[76px]"
+                className="font-brand leading-none tracking-tight text-[clamp(2.25rem,12vw,4.75rem)] lg:text-[76px] max-w-full"
                 style={{ color: 'var(--elaz-text-primary)' }}
                 aria-label="Sonexa"
               >
@@ -129,7 +129,7 @@ export default function Initiatives() {
 
             <div className="lg:col-span-7">
               <p
-                className="font-editorial text-[22px] md:text-[28px] leading-[1.4] max-w-[40ch]"
+                className="font-editorial text-[20px] sm:text-[22px] md:text-[28px] leading-[1.4] max-w-[40ch] [overflow-wrap:anywhere]"
                 style={{ color: 'var(--elaz-text-primary)' }}
               >
                 {t('initiatives.sonexa.body')}
@@ -137,7 +137,7 @@ export default function Initiatives() {
             </div>
           </div>
 
-          <footer className="flex items-center justify-end py-5 md:py-6 border-t border-[color:var(--elaz-border)]">
+          <footer className="flex items-center justify-end py-4 md:py-6 border-t border-[color:var(--elaz-border)]">
             <Link
               to="/sonexa"
               className="group inline-flex items-center gap-3 font-mono text-[12px] md:text-[13px] tracking-[0.14em] uppercase transition-colors duration-200"

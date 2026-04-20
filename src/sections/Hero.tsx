@@ -104,7 +104,7 @@ export default function Hero() {
 
         <div ref={wordmarkRef} className="mb-10 md:mb-14">
           <h1
-            className="font-brand text-display-xl flex flex-row flex-nowrap items-baseline gap-x-3 sm:gap-x-4"
+            className="font-brand text-display-xl flex flex-row flex-wrap items-baseline gap-x-3 sm:gap-x-4 gap-y-1 max-w-full"
             style={{ color: 'var(--elaz-text-primary)' }}
             aria-label="ELAZ GROUP"
           >
@@ -113,10 +113,10 @@ export default function Hero() {
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-16 items-start">
           <h2
             ref={taglineRef}
-            className="text-editorial-xl lg:col-span-8 max-w-[22ch]"
+            className="text-editorial-xl lg:col-span-8 max-w-[22ch] [overflow-wrap:anywhere]"
             style={{ color: 'var(--elaz-text-primary)' }}
             aria-label={tagline}
           >

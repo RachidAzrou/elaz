@@ -59,6 +59,19 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-width: 320px;
+    /* Prevent iOS Safari auto-inflating text on orientation change */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Extra safety: prevent any element from forcing a horizontal scrollbar
+     due to stray long strings, images, or embeds. */
+  html, body, #root {
+    max-width: 100%;
+  }
+
+  img, svg, video, iframe {
+    max-width: 100%;
   }
   
   h1, h2, h3, h4, h5, h6 {

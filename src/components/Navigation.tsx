@@ -147,7 +147,7 @@ export default function Navigation() {
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 -mr-2 touch-manipulation"
+              className="md:hidden inline-flex items-center justify-center min-h-[44px] min-w-[44px] -mr-2 touch-manipulation"
               style={{ color: 'var(--elaz-text-primary)' }}
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMobileMenuOpen}
@@ -163,14 +163,14 @@ export default function Navigation() {
       </nav>
 
       <div
-        className={`fixed inset-0 z-[99] md:hidden transition-all duration-300 ${
+        className={`fixed inset-0 z-[99] md:hidden overflow-y-auto transition-all duration-300 ${
           isMobileMenuOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
         }`}
         style={{ backgroundColor: 'rgba(250, 250, 248, 0.98)' }}
       >
-        <div className="flex flex-col h-full pt-24 px-6 sm:px-8">
+        <div className="flex flex-col min-h-full pt-24 pb-10 px-5 sm:px-8">
           <nav className="flex flex-col">
             {navLinks.map((link, i) =>
               isHome ? (
@@ -181,12 +181,12 @@ export default function Navigation() {
                     e.preventDefault();
                     scrollToSection(link.href);
                   }}
-                  className={`group flex items-baseline justify-between py-5 border-b border-[color:var(--elaz-border)] ${
+                  className={`group flex items-baseline justify-between gap-4 py-5 min-h-[56px] border-b border-[color:var(--elaz-border)] ${
                     i === 0 ? 'border-t' : ''
                   }`}
                 >
                   <span
-                    className="font-editorial text-[28px] sm:text-[32px] leading-none"
+                    className="font-editorial text-[26px] sm:text-[32px] leading-none [overflow-wrap:anywhere]"
                     style={{ color: 'var(--elaz-text-primary)' }}
                   >
                     {t(link.labelKey)}
@@ -203,12 +203,12 @@ export default function Navigation() {
                   key={link.href}
                   to={`/${link.href}`}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`group flex items-baseline justify-between py-5 border-b border-[color:var(--elaz-border)] ${
+                  className={`group flex items-baseline justify-between gap-4 py-5 min-h-[56px] border-b border-[color:var(--elaz-border)] ${
                     i === 0 ? 'border-t' : ''
                   }`}
                 >
                   <span
-                    className="font-editorial text-[28px] sm:text-[32px] leading-none"
+                    className="font-editorial text-[26px] sm:text-[32px] leading-none [overflow-wrap:anywhere]"
                     style={{ color: 'var(--elaz-text-primary)' }}
                   >
                     {t(link.labelKey)}
@@ -224,17 +224,17 @@ export default function Navigation() {
             )}
           </nav>
 
-          <div className="mt-10 flex items-baseline gap-2 font-mono text-[12px] tracking-[0.14em] uppercase">
+          <div className="mt-10 flex items-baseline gap-3 font-mono text-[13px] tracking-[0.14em] uppercase">
             {languages.map((lang, i) => {
               const active = language === lang.code;
               return (
-                <span key={lang.code} className="inline-flex items-baseline gap-2">
+                <span key={lang.code} className="inline-flex items-baseline gap-3">
                   {i > 0 ? (
                     <span style={{ color: 'var(--elaz-text-muted)' }}>/</span>
                   ) : null}
                   <button
                     onClick={() => setLanguage(lang.code as 'nl' | 'en' | 'fr')}
-                    className={`py-1 transition-colors duration-200 ${
+                    className={`inline-flex items-center min-h-[44px] px-1 transition-colors duration-200 ${
                       active
                         ? 'underline decoration-from-font underline-offset-[3px]'
                         : ''

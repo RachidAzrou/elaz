@@ -51,15 +51,15 @@ function Section({
       : 'var(--elaz-bg-primary)';
   return (
     <section
-      className="py-16 md:py-24 lg:py-28"
+      className="py-14 sm:py-16 md:py-24 lg:py-28"
       style={{ backgroundColor: bg }}
       aria-labelledby={id}
     >
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-16">
           <div className="lg:col-span-4">
             <div
-              className="section-marker mb-4 flex items-center gap-3"
+              className="section-marker mb-3 sm:mb-4 flex items-center gap-3"
               style={{ color: 'var(--elaz-text-muted)' }}
             >
               <span
@@ -70,7 +70,7 @@ function Section({
             </div>
             <h2
               id={id}
-              className="font-display font-semibold text-2xl md:text-3xl leading-tight tracking-tight max-w-[20ch]"
+              className="font-display font-semibold text-xl sm:text-2xl md:text-3xl leading-tight tracking-tight max-w-[20ch] [overflow-wrap:anywhere]"
               style={{ color: 'var(--elaz-text-primary)' }}
             >
               {title}
@@ -111,8 +111,8 @@ export default function SonexaPage() {
         className="relative"
         style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
       >
-        <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12 pt-28 md:pt-36 pb-16 md:pb-24">
-          <div className="section-marker mb-8 md:mb-10 flex items-center gap-3">
+        <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12 pt-24 sm:pt-28 md:pt-36 pb-14 md:pb-24">
+          <div className="section-marker mb-6 md:mb-10 flex flex-wrap items-center gap-x-3 gap-y-1">
             <span
               className="inline-block w-6 h-px"
               style={{ background: 'var(--elaz-text-muted)' }}
@@ -120,9 +120,9 @@ export default function SonexaPage() {
             <span>{t('sonexa.badge')}</span>
           </div>
 
-          <div className="mb-12 md:mb-16">
+          <div className="mb-10 md:mb-16">
             <h1
-              className="font-brand leading-[0.95] tracking-tight text-display-xl"
+              className="font-brand leading-[0.95] tracking-tight text-display-xl max-w-full [overflow-wrap:anywhere]"
               style={{ color: 'var(--elaz-text-primary)' }}
               aria-label="Sonexa"
             >
@@ -130,9 +130,9 @@ export default function SonexaPage() {
             </h1>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-16 items-start">
             <h2
-              className="lg:col-span-8 text-editorial-xl"
+              className="lg:col-span-8 text-editorial-xl [overflow-wrap:anywhere]"
               style={{ color: 'var(--elaz-text-primary)' }}
             >
               {heroLines.map((line, i) => (
@@ -229,15 +229,15 @@ export default function SonexaPage() {
       </Section>
 
       <section
-        className="py-16 md:py-24 lg:py-28"
+        className="py-14 sm:py-16 md:py-24 lg:py-28"
         style={{ backgroundColor: 'var(--elaz-bg-secondary)' }}
         aria-labelledby="sonexa-s3"
       >
         <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-10 md:mb-14">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-16 mb-8 sm:mb-10 md:mb-14">
             <div className="lg:col-span-4">
               <div
-                className="section-marker mb-4 flex items-center gap-3"
+                className="section-marker mb-3 sm:mb-4 flex items-center gap-3"
                 style={{ color: 'var(--elaz-text-muted)' }}
               >
                 <span
@@ -248,7 +248,7 @@ export default function SonexaPage() {
               </div>
               <h2
                 id="sonexa-s3"
-                className="font-display font-semibold text-2xl md:text-3xl leading-tight tracking-tight max-w-[20ch]"
+                className="font-display font-semibold text-xl sm:text-2xl md:text-3xl leading-tight tracking-tight max-w-[20ch]"
                 style={{ color: 'var(--elaz-text-primary)' }}
               >
                 {t('sonexa.how.title')}
@@ -261,7 +261,7 @@ export default function SonexaPage() {
               <div
                 key={n}
                 role="listitem"
-                className="group grid grid-cols-12 gap-4 md:gap-8 items-baseline py-6 md:py-8 border-b border-[color:var(--elaz-border)] transition-colors duration-200"
+                className="group grid grid-cols-12 gap-x-4 gap-y-3 md:gap-x-8 md:gap-y-0 md:items-baseline py-6 md:py-8 border-b border-[color:var(--elaz-border)] transition-colors duration-200"
               >
                 <div className="col-span-2 md:col-span-1">
                   <span
@@ -272,13 +272,13 @@ export default function SonexaPage() {
                   </span>
                 </div>
                 <h3
-                  className="col-span-10 md:col-span-4 font-display font-medium text-lg md:text-xl leading-tight tracking-tight transition-colors duration-200 group-hover:text-[color:var(--elaz-accent)]"
+                  className="col-span-10 md:col-span-4 font-display font-medium text-base sm:text-lg md:text-xl leading-tight tracking-tight transition-colors duration-200 group-hover:text-[color:var(--elaz-accent)]"
                   style={{ color: 'var(--elaz-text-primary)' }}
                 >
                   {t(`sonexa.how.step${n}.title` as 'sonexa.how.step1.title')}
                 </h3>
                 <p
-                  className="col-span-12 md:col-span-7 text-[15px] md:text-base leading-[1.7] max-w-[56ch]"
+                  className="col-start-3 col-span-10 md:col-start-auto md:col-span-7 text-[14px] sm:text-[15px] md:text-base leading-[1.65] md:leading-[1.7] max-w-[56ch]"
                   style={{ color: 'var(--elaz-text-secondary)' }}
                 >
                   {t(`sonexa.how.step${n}.desc` as 'sonexa.how.step1.desc')}
@@ -308,15 +308,15 @@ export default function SonexaPage() {
       </Section>
 
       <section
-        className="py-16 md:py-24 lg:py-28"
+        className="py-14 sm:py-16 md:py-24 lg:py-28"
         style={{ backgroundColor: 'var(--elaz-bg-secondary)' }}
         aria-labelledby="sonexa-s5"
       >
         <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-10 md:mb-14">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-16 mb-8 sm:mb-10 md:mb-14">
             <div className="lg:col-span-4">
               <div
-                className="section-marker mb-4 flex items-center gap-3"
+                className="section-marker mb-3 sm:mb-4 flex items-center gap-3"
                 style={{ color: 'var(--elaz-text-muted)' }}
               >
                 <span
@@ -327,7 +327,7 @@ export default function SonexaPage() {
               </div>
               <h2
                 id="sonexa-s5"
-                className="font-display font-semibold text-2xl md:text-3xl leading-tight tracking-tight max-w-[20ch]"
+                className="font-display font-semibold text-xl sm:text-2xl md:text-3xl leading-tight tracking-tight max-w-[20ch]"
                 style={{ color: 'var(--elaz-text-primary)' }}
               >
                 {t('sonexa.who.title')}
@@ -345,20 +345,20 @@ export default function SonexaPage() {
               >
                 <div className="flex items-baseline gap-3 mb-2">
                   <span
-                    className="font-mono text-[11px] md:text-[12px] tracking-[0.14em] tabular-nums"
+                    className="font-mono text-[11px] md:text-[12px] tracking-[0.14em] tabular-nums shrink-0"
                     style={{ color: 'var(--elaz-text-muted)' }}
                   >
                     0{i + 1}
                   </span>
                   <h3
-                    className="font-display font-semibold text-lg md:text-xl leading-tight tracking-tight"
+                    className="font-display font-semibold text-base sm:text-lg md:text-xl leading-tight tracking-tight [overflow-wrap:anywhere]"
                     style={{ color: 'var(--elaz-text-primary)' }}
                   >
                     {t(`sonexa.who.li${n}` as 'sonexa.who.li1')}
                   </h3>
                 </div>
                 <p
-                  className="ml-[calc(1.3em+0.75rem)] text-[14px] md:text-[15px] leading-[1.7] max-w-[48ch]"
+                  className="ml-[calc(1.1em+0.75rem)] text-[14px] md:text-[15px] leading-[1.65] md:leading-[1.7] max-w-[48ch]"
                   style={{ color: 'var(--elaz-text-secondary)' }}
                 >
                   {t(`sonexa.who.li${n}.desc` as 'sonexa.who.li1.desc')}
@@ -370,7 +370,7 @@ export default function SonexaPage() {
       </section>
 
       <section
-        className="py-16 md:py-24 lg:py-28"
+        className="py-14 sm:py-16 md:py-24 lg:py-28"
         style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
       >
         <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
@@ -380,7 +380,7 @@ export default function SonexaPage() {
               className="absolute -top-px left-0 h-[2px] w-24 sm:w-32"
               style={{ background: 'var(--elaz-accent)' }}
             />
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 py-12 md:py-16 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-16 py-10 sm:py-12 md:py-16 items-start">
               <div className="lg:col-span-5">
                 <div
                   className="section-marker mb-4"
@@ -389,7 +389,7 @@ export default function SonexaPage() {
                   {t('sonexa.survey.label')}
                 </div>
                 <h2
-                  className="font-editorial text-[26px] md:text-[32px] leading-[1.2] max-w-[22ch]"
+                  className="font-editorial text-[22px] sm:text-[26px] md:text-[32px] leading-[1.2] max-w-[22ch] [overflow-wrap:anywhere]"
                   style={{ color: 'var(--elaz-text-primary)' }}
                 >
                   {t('sonexa.survey.title')}
@@ -397,7 +397,7 @@ export default function SonexaPage() {
               </div>
               <div className="lg:col-span-7">
                 <p
-                  className="text-[15px] md:text-base leading-[1.75] mb-8 max-w-[52ch]"
+                  className="text-[15px] md:text-base leading-[1.75] mb-6 sm:mb-8 max-w-[52ch]"
                   style={{ color: 'var(--elaz-text-secondary)' }}
                 >
                   {t('sonexa.survey.p2')}
@@ -407,10 +407,10 @@ export default function SonexaPage() {
                   {...(isExternal
                     ? { target: '_blank', rel: 'noopener noreferrer' }
                     : {})}
-                  className="group inline-flex items-center gap-3"
+                  className="group inline-flex flex-wrap items-baseline gap-x-3 gap-y-1 max-w-full"
                 >
                   <span
-                    className="font-editorial text-[22px] md:text-[26px] leading-none underline decoration-1 underline-offset-[4px] decoration-[color:var(--elaz-border)] transition-colors duration-200 group-hover:decoration-[color:var(--elaz-accent)] group-hover:text-[color:var(--elaz-accent)]"
+                    className="font-editorial text-[20px] sm:text-[22px] md:text-[26px] leading-[1.15] underline decoration-1 underline-offset-[4px] decoration-[color:var(--elaz-border)] transition-colors duration-200 group-hover:decoration-[color:var(--elaz-accent)] group-hover:text-[color:var(--elaz-accent)] [overflow-wrap:anywhere]"
                     style={{ color: 'var(--elaz-text-primary)' }}
                   >
                     {t('sonexa.survey.cta')}
@@ -444,14 +444,14 @@ export default function SonexaPage() {
       </section>
 
       <section
-        className="py-16 md:py-24 lg:py-28"
+        className="py-14 sm:py-16 md:py-24 lg:py-28"
         style={{ backgroundColor: 'var(--elaz-bg-secondary)' }}
       >
         <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-16 items-start">
             <div className="lg:col-span-7">
               <h2
-                className="text-editorial-lg max-w-[18ch]"
+                className="text-editorial-lg max-w-[18ch] [overflow-wrap:anywhere]"
                 style={{ color: 'var(--elaz-text-primary)' }}
               >
                 {t('sonexa.closing.title')}

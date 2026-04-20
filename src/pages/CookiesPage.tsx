@@ -35,7 +35,7 @@ function Section({
 }) {
   return (
     <section
-      className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 pt-10 md:pt-14 pb-10 md:pb-14 border-t border-[color:var(--elaz-border)]"
+      className="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-6 lg:gap-10 pt-8 sm:pt-10 md:pt-14 pb-8 sm:pb-10 md:pb-14 border-t border-[color:var(--elaz-border)]"
       aria-labelledby={id}
     >
       <div className="lg:col-span-3">
@@ -47,14 +47,14 @@ function Section({
         </span>
         <h2
           id={id}
-          className="mt-2 font-display font-semibold text-xl md:text-2xl leading-tight tracking-tight"
+          className="mt-2 font-display font-semibold text-lg sm:text-xl md:text-2xl leading-tight tracking-tight [overflow-wrap:anywhere]"
           style={{ color: 'var(--elaz-text-primary)' }}
         >
           {title}
         </h2>
       </div>
       <div
-        className="lg:col-span-9 max-w-[62ch] text-[15px] md:text-base leading-[1.75]"
+        className="lg:col-span-9 max-w-[62ch] text-[15px] md:text-base leading-[1.75] [overflow-wrap:anywhere]"
         style={{ color: 'var(--elaz-text-secondary)' }}
       >
         {children}
@@ -79,9 +79,9 @@ export default function CookiesPage() {
       className="relative pb-20 md:pb-28"
       style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
     >
-      <header className="pt-28 md:pt-36 pb-14 md:pb-20">
+      <header className="pt-24 sm:pt-28 md:pt-36 pb-12 sm:pb-14 md:pb-20">
         <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
-          <div className="section-marker mb-10 md:mb-14 flex items-center gap-3">
+          <div className="section-marker mb-8 sm:mb-10 md:mb-14 flex items-center gap-3">
             <span
               className="inline-block w-6 h-px"
               style={{ background: 'var(--elaz-text-muted)' }}
@@ -89,9 +89,9 @@ export default function CookiesPage() {
             <span>{t('cookies.eyebrow')}</span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-end">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-16 lg:items-end">
             <h1
-              className="lg:col-span-8 text-editorial-xl max-w-[18ch]"
+              className="lg:col-span-8 text-editorial-xl max-w-[18ch] [overflow-wrap:anywhere]"
               style={{ color: 'var(--elaz-text-primary)' }}
             >
               {t('cookies.title')}.

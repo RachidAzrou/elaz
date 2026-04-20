@@ -149,10 +149,10 @@ export default function WhoWeAre() {
 
         <div className="hairline mb-14 md:mb-20" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-16 md:mb-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-16 mb-16 md:mb-24 items-start">
           <p
             ref={quoteRef}
-            className="lg:col-span-5 font-editorial italic text-[22px] md:text-[28px] leading-[1.35] max-w-[28ch]"
+            className="lg:col-span-5 font-editorial italic text-[20px] sm:text-[22px] md:text-[28px] leading-[1.35] max-w-[28ch] [overflow-wrap:anywhere]"
             style={{ color: 'var(--elaz-text-primary)' }}
           >
             &ldquo;{t('who.foundersTagline')}&rdquo;
@@ -191,7 +191,7 @@ export default function WhoWeAre() {
                 className="founder-photo flex flex-col"
               >
                 <div
-                  className="w-full max-w-[200px] md:max-w-[220px] aspect-[5/6] overflow-hidden border border-[color:var(--elaz-border)]"
+                  className="w-full max-w-[240px] sm:max-w-[200px] md:max-w-[220px] aspect-[5/6] overflow-hidden border border-[color:var(--elaz-border)]"
                   style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
                 >
                   <img
