@@ -7,33 +7,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 const FOUNDERS = [
   {
-    index: '01',
-    src: '/images/founder1.jpg',
-    nameKey: 'who.founder1.name',
-    roleKey: 'who.founder1.role',
-    imageZoom: 1.62,
-    objectPosition: '44% 40%',
-    transformOrigin: '44% 46%',
-    imageNudge: { x: '5%', y: '20%' },
+    // Jawad
+    src: '/images/founders/founder-1.png',
+    nameKey: 'who.founder3.name',
+    roleKey: 'who.founder3.role',
   },
   {
-    index: '02',
-    src: '/images/founder2.jpg',
+    // Rachid
+    src: '/images/founders/founder-3.png',
     nameKey: 'who.founder2.name',
     roleKey: 'who.founder2.role',
   },
   {
-    index: '03',
-    src: '/images/founder3.png',
-    nameKey: 'who.founder3.name',
-    roleKey: 'who.founder3.role',
-    imageZoom: 1.06,
-    objectPosition: '50% 30%',
-    transformOrigin: '50% 35%',
+    // Hassan
+    src: '/images/founders/founder-2.png',
+    nameKey: 'who.founder1.name',
+    roleKey: 'who.founder1.role',
+    imageZoom: 1.22,
+    transformOrigin: '50% 18%',
   },
 ] as const;
 
-/** Splits "Co-founder — Role detail" into two lines (em dash, en dash, or hyphen). */
+/** Splits "Co-founder — Task" into two lines (em dash, en dash, or hyphen). */
 function splitFounderRole(role: string): { title: string; subtitle: string | null } {
   const separators = [' — ', ' – ', ' - '];
   for (const sep of separators) {
@@ -186,12 +181,9 @@ export default function WhoWeAre() {
           {FOUNDERS.map((founder) => {
             const { title, subtitle } = splitFounderRole(t(founder.roleKey));
             return (
-              <figure
-                key={founder.src}
-                className="founder-photo flex flex-col"
-              >
+              <figure key={founder.nameKey} className="founder-photo flex flex-col">
                 <div
-                  className="w-full max-w-[240px] sm:max-w-[200px] md:max-w-[220px] aspect-[5/6] overflow-hidden border border-[color:var(--elaz-border)]"
+                  className="w-full max-w-[240px] sm:max-w-[200px] md:max-w-[220px] aspect-[2/3] overflow-hidden border border-[color:var(--elaz-border)]"
                   style={{ backgroundColor: 'var(--elaz-bg-primary)' }}
                 >
                   <img
@@ -203,23 +195,13 @@ export default function WhoWeAre() {
                         'transformOrigin' in founder && founder.transformOrigin
                           ? founder.transformOrigin
                           : 'center',
-                      ...(('objectPosition' in founder && founder.objectPosition) && {
-                        objectPosition: founder.objectPosition,
-                      }),
                       ...(() => {
                         const zoom =
                           'imageZoom' in founder && founder.imageZoom != null
                             ? founder.imageZoom
                             : undefined;
-                        const nudge =
-                          'imageNudge' in founder && founder.imageNudge
-                            ? founder.imageNudge
-                            : null;
-                        if (zoom == null && !nudge) return {};
-                        const parts: string[] = [];
-                        if (nudge) parts.push(`translate(${nudge.x}, ${nudge.y})`);
-                        if (zoom != null) parts.push(`scale(${zoom})`);
-                        return { transform: parts.join(' ') };
+                        if (zoom == null) return {};
+                        return { transform: `scale(${zoom})` };
                       })(),
                     }}
                     onError={(e) => {
@@ -229,28 +211,28 @@ export default function WhoWeAre() {
                 </div>
 
                 <figcaption className="pt-5 max-w-[240px] md:max-w-[260px]">
-                  <div className="pb-3 border-b border-[color:var(--elaz-border)]">
-                    <span
-                      className="font-mono text-[11px] tracking-[0.18em] uppercase"
-                      style={{ color: 'var(--elaz-text-muted)' }}
-                    >
-                      {title}
-                    </span>
-                  </div>
-                  <h3
-                    className="mt-4 font-display font-semibold text-lg md:text-xl leading-tight tracking-tight"
-                    style={{ color: 'var(--elaz-text-primary)' }}
+                <div className="pb-3 border-b border-[color:var(--elaz-border)]">
+                  <span
+                    className="font-mono text-[11px] tracking-[0.18em] uppercase"
+                    style={{ color: 'var(--elaz-text-muted)' }}
                   >
-                    {t(founder.nameKey)}
-                  </h3>
-                  {subtitle ? (
-                    <p
-                      className="mt-2 text-[13px] md:text-sm leading-relaxed"
-                      style={{ color: 'var(--elaz-text-secondary)' }}
-                    >
-                      {subtitle}
-                    </p>
-                  ) : null}
+                    {title}
+                  </span>
+                </div>
+                <h3
+                  className="mt-4 font-display font-semibold text-lg md:text-xl leading-tight tracking-tight"
+                  style={{ color: 'var(--elaz-text-primary)' }}
+                >
+                  {t(founder.nameKey)}
+                </h3>
+                {subtitle ? (
+                  <p
+                    className="mt-2 text-[13px] md:text-sm leading-relaxed"
+                    style={{ color: 'var(--elaz-text-secondary)' }}
+                  >
+                    {subtitle}
+                  </p>
+                ) : null}
                 </figcaption>
               </figure>
             );
